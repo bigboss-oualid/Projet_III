@@ -28,4 +28,14 @@ var_dump($app->session->remove('NoKey'));
 var_dump($app->session->remove('key'));
 var_dump($app->session->all());
 var_dump($app->session->destroy());
-var_dump($app->session->appSession());
+
+$request = new System\Http\Request();
+var_dump($request->post('id', 50));
+var_dump($request->post('id', 'ID'));
+var_dump($request->post('name', 'walid'));
+var_dump($request->get('id', 50));
+var_dump($request->get('nickname', 'bigBoss'));
+var_dump($request->prepareUrl());
+var_dump($request->baseUrl());
+var_dump($request->method());
+var_dump($request->server('REQUEST_URI'));

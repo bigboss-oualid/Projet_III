@@ -34,6 +34,7 @@ class Application
 	public function run(): void
 	{
 		$this->session->start();
+		$this->request->prepareUrl();
 	}
 
 	/**
@@ -85,6 +86,7 @@ class Application
 	private function coreClasses(): array
 	{
 		return [
+			'request'     => 'System\\Http\\Request',
 			'session'     => 'System\\Session'
 		];
 	}
