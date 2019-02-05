@@ -27,6 +27,16 @@ class Application
 	}
 
 	/**
+	 * run the Application leads to a session start
+	 * 
+	 * @return void
+	 */
+	public function run(): void
+	{
+		$this->session->start();
+	}
+
+	/**
 	 * Register classes in spl auto load register
 	 * 
 	 * @return void
@@ -68,6 +78,45 @@ class Application
 	}
 
 	/**
+	 * Get all core classes with its aliases
+	 * 
+	 * @return array ['Alias' => '\\Path...\\file']
+	 */
+	private function coreClasses(): array
+	{
+		return [
+			'session'     => 'System\\Session'
+		];
+	}
+
+	/**
+	 * Determine if the given key is an alias to core class
+	 *  
+	 * @param  string  $alias
+	 * @return bool  
+	 */
+	private function isCoreAlias(string $alias): bool
+	{
+		$coreClasses = $this->coreClasses();
+
+		return isset($coreClasses[$alias]);
+	}
+
+	/**
+	 * Creat new object for the core class based on the given alias, and pass the Application to his constructor
+	 * 
+	 * @param  string $alias 
+	 * @return mixed 
+	 */
+	private function createNewCoreObject(string $alias)
+	{
+		$coreClasses = $this->coreClasses();
+		$object = $coreClasses[$alias];
+
+		return new $object($this);
+	}
+
+	/**
 	 * share the given key|value (files) through the Application
 	 * 
 	 * @param  string $key 
@@ -80,6 +129,17 @@ class Application
 	}
 
 	/**
+	 * Determine if the given key is shared through Application means is it saved in the $container[$key] ?
+	 * 
+	 * @param  string $key 
+	 * @return bool 
+	 */
+	public function isSharing(string $key): bool
+	{
+		return isset($this->container[$key]);
+	}
+
+	/**
 	 * Get the shared value of the property
 	 * 
 	 * @param  string $key
@@ -87,7 +147,14 @@ class Application
 	 */
 	private function get(string $key)
 	{
-		return isset($this->container[$key])? $this->container[$key] : null ;
+		if(! $this->isSharing($key)) {
+			if ($this->isCoreAlias($key)) {
+				$this->share($key, $this->createNewCoreObject($key));
+			} else {
+				die('<b>' . $key . '</b> not found in application Container, look the coreClasses() function for more details');
+			}
+		}
+		return $this->container[$key];
 	}
 
 	/**

@@ -11,8 +11,21 @@ use App\Controllers\Feature\ControllersTest;
 $file = new File(__DIR__);
 $app = new Application($file);
 
-var_dump($file);
-var_dump($app);
-
 new System\System();
 new ControllersTest();
+
+
+$app->run();
+
+//Test Session
+$app->session->set('key', 'value');
+$app->session->set('key2', 2);
+var_dump($app->session->get('key'));
+var_dump($app->session->all());
+var_dump($app->session->pull('key2'));
+var_dump($app->session->pull('noKey'));
+var_dump($app->session->remove('NoKey'));
+var_dump($app->session->remove('key'));
+var_dump($app->session->all());
+var_dump($app->session->destroy());
+var_dump($app->session->appSession());
