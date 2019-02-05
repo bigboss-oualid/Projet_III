@@ -1,7 +1,7 @@
 
 ToDo:
-Création de la fonction run() dans la classe vendor\System\Application.php
-Création de la classe vendor\System\Session.php
+Création de la classe vendor\System\Http\Request.php 
+La classe doit être capable de retourner des données sur l'utilisateur comme url,  _GET, _POST etc..
 
 Projet:CRÉER UN BLOG POUR UN ÉCRIVAIN
 
