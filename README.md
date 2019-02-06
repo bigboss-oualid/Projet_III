@@ -1,7 +1,15 @@
 
 ToDo:
-Création de la classe vendor\System\Http\Request.php 
-La classe doit être capable de retourner des données sur l'utilisateur comme url,  _GET, _POST etc..
+
+
++Création des classes suivantes
+ 	1-vendor\System\Http\Route.php:
+		-La classe doit manager l'URL qui vient de la requête, et à partir de cette base on détermine le controlleur et les methodes appellées
+	2-vendor\System\Loader.php
+		-La classe permet de charger les classes " Controllers" & "Models"
+	3-vendor\System\Controller.php
+		-sera une classe abstract qui sera hérité par tous les classes controllers
+	
 
 Projet:CRÉER UN BLOG POUR UN ÉCRIVAIN
 
