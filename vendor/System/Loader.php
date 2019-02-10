@@ -95,8 +95,6 @@ class Loader
 		$object = new $controller($this->app);
 
 		$this->controllers[$controller] = $object;
-
-		$this->controllers[] = $controller;
 	}
 
 	/**
@@ -125,5 +123,80 @@ class Loader
 		$controller  = 'App\\Controllers\\' . $controller;
 
 		return str_replace('/', '\\', $controller);
+	}
+
+	/**
+	 * Call the given model
+	 * 
+	 * @param  string $model
+	 * 
+	 * @return object \System\model             
+	 */
+	public function model(string $model)
+	{
+		$model = $this->getModelPath($model);
+
+		if(! $this->hasModel($model)){
+			$this->addModel($model);
+		}
+
+		return $this->getModel($model);
+	}
+
+	/**
+	 * Determine if  the given class|model exists in the models
+	 *  container
+	 * 
+	 * @param  string  $model
+	 * 
+	 * @return boolean 
+	 */
+	private function hasModel(string $model): bool
+	{
+		return array_key_exists($model, $this->models);
+	}
+
+	/**
+	 * Create new Object for the given model and store ot in the models
+	 * container
+	 * 
+	 * @param string $model
+	 * 
+	 * @return void
+	 */
+	private function addModel(string $model): void
+	{
+		$object = new $model($this->app);
+
+		//App\Models\HomeModel
+		$this->models[$model] = $object;
+	}
+
+	/**
+	 * Get the given model object
+	 * 
+	 * @param  string $model 
+	 * 
+	 * @return object \System\model 
+	 */
+	private function getModel(string $model)
+	{
+		return $this->models[$model];
+	}
+
+	/**
+	 * Get the full class name for the given model
+	 * 
+	 * @param  string $model
+	 * 
+	 * @return string
+	 */
+	private function getModelPath(string $model): string
+	{
+		$model .= 'Model';
+
+		$model  = 'App\\Models\\' . $model;
+
+		return str_replace('/', '\\', $model);
 	}
 } 
