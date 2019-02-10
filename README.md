@@ -1,20 +1,14 @@
 
 ToDo:
 
-
-+Création des classes suivantes
-	-vendor\System\View\
-		le dossier va contenir 3 classe ViewFactory.php, ViewInterface.php et View.php qui va implementer cette dérnière.
-
-		-ViewFactory: va générer des objets de vue qui seront essentiellement gérer des fichiers HTML pour la vue.
-		-View: elle sera responsable de l'appel des vues "fichiers contenant le code html "et de la transmission de certaines variables.
-		
-	-vendor\System\Http\Response.php
-		Response: gérer toutes les réponses car les En-têtes et le contenu de nos page lui seront transmise pour l'afficher dans le navigateur
-	-vendor\System\Databse
-		Connexion à la base des données + gestion des données
-	-vendor\System\Model
-		classe abstraite, classe mère de toute les classes Model
+Finir le core de l'application:
+	+Création des classes suivantes
+		-vendor\System\Cokkie.php
+			Gestion des Cookies.
+		-vendor\System\Html.php
+			Gestion des metadata des pages html.
+		-vendor\System\Url.php
+			générer des liens complets.
 
 		
 
