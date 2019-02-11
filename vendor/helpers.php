@@ -38,11 +38,11 @@ if(! function_exists('_escape')) {
 	/**
 	 * Escape the given value
 	 * 
-	 * @param  string  $value
+	 * @param  string | null  $value
 	 * 
 	 * @return string
 	 */
-	function _escape(string $value): string
+	function _escape(string $value = null): string
 	{
 		return htmlspecialchars($value);
 	}
@@ -61,5 +61,21 @@ if(! function_exists('assets')) {
 		$app = Application::getInstance();
 
 		return $app->url->link('public/' . $path);
+	}
+}
+
+if(! function_exists('urlHtm')) {
+	/**
+	 * Generate full path for the given path
+	 * 
+	 * @param  string  $path
+	 * 
+	 * @return string
+	 */
+	function urlHtml(string $path): string
+	{
+		$app = Application::getInstance();
+
+		return $app->url->link($path);
 	}
 }
