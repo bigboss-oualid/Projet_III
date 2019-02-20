@@ -11,6 +11,13 @@ class Application
 	 */
 	private $container = [];
 
+		/**
+	 * Application Object
+	 * 
+	 * @var \System\Application
+	 */
+	private static $instance;
+
 	/**
 	 * Constructor
 	 * 
@@ -24,6 +31,21 @@ class Application
 		$this->loadHelpers();
 
 		pre($this->file);
+	}
+
+	/**
+	 * Get Application Instance
+	 *
+	 * @param \System\File $file 
+	 * 
+	 * @return \System\Application
+	 */
+	public static function getInstance(File $file = null)
+	{
+		if (is_null(static::$instance)) {
+			static::$instance = new static($file);
+		}
+		return static::$instance;
 	}
 
 	/**
