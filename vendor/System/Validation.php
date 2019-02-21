@@ -2,9 +2,6 @@
 
 namespace System;
 
-/**
- * check Errors for input one time for evry input  
- */
 class Validation
 {
 	/**

@@ -41,6 +41,7 @@ class Route
 	 * @param  string  $url           
 	 * @param  string  $action        
 	 * @param  string  $requestMethod  POST or GET  
+	 * 
 	 * @return void             
 	 */
 	public function add(string $url, string $action,string $requestMethod = 'GET'): void
@@ -59,6 +60,7 @@ class Route
 	 * Generate a regex pattern for the given url
 	 * 
 	 * @param  string $url 
+	 * 
 	 * @return string
 	 */
 	private function generatePattern(string $url): string
@@ -77,6 +79,7 @@ class Route
 	 * Get the proper action
 	 * 
 	 * @param  string $action
+	 * 
 	 * @return string
 	 */
 	private function getAction(string $action): string
@@ -87,8 +90,10 @@ class Route
 	}
 
 	/**
-	 * [notFound description]
-	 * @param  string $url [description]
+	 * Get url for NotFound page
+	 * 
+	 * @param  string $url 
+	 * 
 	 * @return void
 	 */
 	public function notFound(string $url): void
@@ -117,6 +122,7 @@ class Route
 	 * Determine if the given pattern matches the current request url
 	 * 
 	 * @param  string  $pattern
+	 * 
 	 * @return boolean
 	 */
 	private function isMatching(string $pattern): bool
@@ -129,9 +135,10 @@ class Route
 	 * Get Arguments from the current request url based on the given pattern
 	 * 
 	 * @param  string $pattern
+	 * 
 	 * @return array
 	 */
-	private function getArgumentsFrom(string $pattern)
+	private function getArgumentsFrom(string $pattern): array
 	{
 		preg_match($pattern, $this->app->request->url(), $matches);
 		array_shift($matches);

@@ -58,7 +58,7 @@ class Loader
 	 * 
 	 * @return object \System\Controller             
 	 */
-	public function controller(string $controller)
+	public function controller(string $controller): \System\Controller
 	{
 		$controller = $this->getControllerPath($controller);
 
@@ -104,7 +104,7 @@ class Loader
 	 * 
 	 * @return object \System\Controller 
 	 */
-	private function getController(string $controller)
+	private function getController(string $controller): \System\Controller 
 	{
 		return $this->controllers[$controller];
 	}
@@ -132,7 +132,7 @@ class Loader
 	 * 
 	 * @return object \System\model             
 	 */
-	public function model(string $model)
+	public function model(string $model): \System\model
 	{
 		$model = $this->getModelPath($model);
 
@@ -179,7 +179,7 @@ class Loader
 	 * 
 	 * @return object \System\model 
 	 */
-	private function getModel(string $model)
+	private function getModel(string $model): \System\model
 	{
 		return $this->models[$model];
 	}
