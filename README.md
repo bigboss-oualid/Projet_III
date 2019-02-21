@@ -1,4 +1,18 @@
-CRÉER UN BLOG POUR UN ÉCRIVAIN
+
+ToDo:
+
+Finir le core de l'application:
+	+Création des classes suivantes
+		-vendor\System\Cokkie.php
+			Gestion des Cookies.
+		-vendor\System\Html.php
+			Gestion des metadata des pages html.
+		-vendor\System\Url.php
+			générer des liens complets.
+
+		
+
+Projet:CRÉER UN BLOG POUR UN ÉCRIVAIN
 
 Jean Forteroche, acteur et écrivain. Il travaille actuellement sur son prochain roman, "Billet simple pour l'Alaska". Il souhaite innover et le publier par épisode en ligne sur son propre site.
 Seul problème : Jean n'aime pas WordPress et souhaite avoir son propre outil de blog, offrant des fonctionnalités plus simples. Vous allez donc devoir développer un moteur de blog en PHP et MySQL.
