@@ -51,6 +51,7 @@ abstract class Model
 	 * Call shared Application objects dynamically
 	 *
 	 * ´@param string  $key
+	 * 
 	 * @return mixed
 	 */
 	public function __get(string $key)
@@ -62,7 +63,8 @@ abstract class Model
 	 * Call Database methods dynamically
 	 * 
 	 * @param  string $method 
-	 * @param  array  $args   
+	 * @param  array  $args  
+	 *  
 	 * @return mixed
 	 */
 	public function __call(string $method, array $args)
@@ -84,6 +86,7 @@ abstract class Model
 	 * Get Record by Id
 	 * 
 	 * @param  int    $id 
+	 * 
 	 * @return \stdClass | null
 	 */
 	public function get(int $id)

@@ -6,7 +6,8 @@ class Application
 {
 
 	/**
-	 * save Object or mixed data
+	 * Save Object or mixed data wich will shared & be used in the Application 
+	 * 
 	 * @var array
 	 */
 	private $container = [];
@@ -40,7 +41,7 @@ class Application
 	 * 
 	 * @return \System\Application
 	 */
-	public static function getInstance(File $file = null)
+	public static function getInstance(File $file = null): \System\Application
 	{
 		if (is_null(static::$instance)) {
 			static::$instance = new static($file);
@@ -49,7 +50,7 @@ class Application
 	}
 
 	/**
-	 * run the Application leads to a session start
+	 * Run the Application leads to a session start
 	 * 
 	 * @return void
 	 */
@@ -91,7 +92,7 @@ class Application
 	}
 
 	/**
-	 * Load Helpers File
+	 * Load Helpers some functions that will be helpfel for the application
 	 * 
 	 * @return void
 	 */
@@ -109,7 +110,16 @@ class Application
 	{
 		return [
 			'request'     => 'System\\Http\\Request',
-			'session'     => 'System\\Session'
+			'response'	  => 'System\\Http\\Response',	
+			'session'     => 'System\\Session',
+			'route'       => 'System\\Route',
+			'load'        => 'System\\Loader',
+			'cookie'      => 'System\\Cookie',
+			'html'        => 'System\\Html',
+			'view'        => 'System\\View\\ViewFactory',
+			'db'          => 'System\\Database',
+			'url'         => 'System\\Url',
+			'validator'   => 'System\\Validation',
 		];
 	}
 
@@ -117,6 +127,7 @@ class Application
 	 * Determine if the given key is an alias to core class
 	 *  
 	 * @param  string  $alias
+	 * 
 	 * @return bool  
 	 */
 	private function isCoreAlias(string $alias): bool
@@ -129,7 +140,8 @@ class Application
 	/**
 	 * Creat new object for the core class based on the given alias, and pass the Application to his constructor
 	 * 
-	 * @param  string $alias 
+	 * @param  string $alias
+	 * 
 	 * @return mixed 
 	 */
 	private function createNewCoreObject(string $alias)
@@ -141,10 +153,11 @@ class Application
 	}
 
 	/**
-	 * share the given key|value (files) through the Application
+	 * Share the given key|value (files) through the Application
 	 * 
 	 * @param  string $key 
 	 * @param  mixed $value 
+	 * 
 	 * @return mixed 
 	 */
 	public function share(string $key, $value)

@@ -40,6 +40,17 @@ class File
 		return file_exists($file);
 	}
 
+	 /**
+     * Require The given file
+     *
+     * @param string $file
+     * @return mixed
+     */
+    public function call($file)
+    {
+        return require $this->to($file);
+    }
+
 	/**
 	 * require the given file
 	 * 

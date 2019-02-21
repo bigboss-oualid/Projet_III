@@ -22,7 +22,7 @@ abstract class Controller
 	}
 
 	/**
-	 * Call shared Application bjects dynamically
+	 * Call shared Application objects dynamically
 	 *
 	 * ´@param string  $key
 	 * @return mixed

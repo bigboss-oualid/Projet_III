@@ -53,6 +53,7 @@ class Request
 	 * 
 	 * @param  string $parameter 
 	 * @param  mixed  $default
+	 * 
 	 * @return mixed           
 	 */
 	public function post(string $parameter, $default = null)
@@ -65,6 +66,7 @@ class Request
 	 * 
 	 * @param  string  $parameter 
 	 * @param  mixed   $default
+	 * 
 	 * @return mixed           
 	 */
 	public function get(string $parameter, $default = null)

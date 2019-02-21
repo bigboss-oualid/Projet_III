@@ -129,7 +129,9 @@ class Database
 	 */
 	private function connect(): void
 	{
-		$connectionData = $this->app->file->call('config.php');
+		$parameterBd = $this->app->file->call('config.php');
+
+		$connectionData = array_get($parameterBd, 'db');
 
 		extract($connectionData);
 
@@ -300,9 +302,9 @@ class Database
 	 * 
 	 * @return $this
 	 */
-	public function select(string $select)
+	public function select(...$select)
 	{
-		$this->selects[] = $select;
+		$this->selects = array_merge($this->selects, $select);
 
 		return $this;
 	}
@@ -511,7 +513,7 @@ class Database
 		} catch (PDOException $e) {
 			echo $sql;
 
-			pre($this->bindings);
+			pre($this->bindings,0);
 
 			die($e->getMessage());
 		}

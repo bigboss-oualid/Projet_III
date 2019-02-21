@@ -25,6 +25,7 @@ class Url
 	 * Generate full link for the given path
 	 *
 	 * ´@param string  $path
+	 * 
 	 * @return string
 	 */
 	public function link(string $path): string
@@ -35,7 +36,7 @@ class Url
 	/**
 	 * Redirect to the given Path
 	 *
-	 * ´@param string  $path
+	 * @param string  $path
 	 * 
 	 * @return void
 	 */

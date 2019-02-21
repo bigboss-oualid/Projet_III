@@ -28,7 +28,7 @@ class Session
 	 */
 	public function start(): void
 	{		
-		// avoid attacks that use session identifiers in URLs more secure setting must be added later
+		// avoid attacks that use session identifiers in URLs more secure setting will be added later
 		ini_set('session.use_only_cookies', 1);
 
 		if(! session_id()) {
@@ -54,6 +54,7 @@ class Session
 	 *
 	 * @param  mixed|null $default
 	 * @param  mixed $key
+	 * 
 	 * @return mixed
 	 */
 	public function get(string $key, $default = null)
@@ -65,6 +66,7 @@ class Session
 	 * Determine if the session has the given key
 	 * 
 	 * @param  string  $key
+	 * 
 	 * @return bool
 	 */
 	public function has(string $key): bool
@@ -76,6 +78,7 @@ class Session
 	 * Remove the given key from session
 	 * 
 	 * @param  string $key
+	 * 
 	 * @return void
 	 */
 	public function remove(string $key): void
@@ -89,6 +92,7 @@ class Session
 	 * Get value from session by the given key then remove it
 	 * 
 	 * @param  string $key
+	 * 
 	 * @return mixed
 	 */
 	public function pull(string $key)

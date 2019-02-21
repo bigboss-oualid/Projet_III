@@ -8,6 +8,6 @@ class ControllersTest
 	 */
 	public function __construct()
 	{
-		echo '<br>L\'importation de la classe "App\Controllers\feature\ControllersTest.php" fonctionne<br/>';
+		echo '<br>The import of the class "App\Controllers\feature\ControllersTest.php" is imported successfully <br/>';
 	}
 }
