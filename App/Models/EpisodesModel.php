@@ -42,7 +42,7 @@ class EpisodesModel extends Model
 	 /**
      * Count all Activited episodes
      *
-     * @return array
+     * @return stdClass
      */
     public function totalEnabled()
     {
@@ -56,9 +56,11 @@ class EpisodesModel extends Model
 	 /**
      * Get latest episodes
      *
+     * @param string $limit
+     *
      * @return array
      */
-    public function latest(int $limit = 0)
+    public function latest(int $limit = 0): array
     {
         //Get the latest added episodes
         return $this->select('e.*', 'c.name AS `chapter`', 'u.first_name', 'u.last_name')
@@ -87,13 +89,13 @@ class EpisodesModel extends Model
 			$this->data('image', $image);
 		}
 
-		/*$user =  $this->user;
+		$user =  $this->user;
 
 		if ($user->id >= 0) {
 			$user_id = $user->id; 
 		} else {
 			$user_id = 0;
-		}*/
+		}
 		
 		$title = ucfirst($this->request->post('title'));
 
