@@ -37,8 +37,29 @@
                         <img class="img-responsive img-rounded thumbnail" src="<?= assets('uploads/images/episodes/' . $episode->image); ?>" alt="<?= $episode->title; ?>" />
                     </a>
                     <p class="details">
+                        <div class="episodedetails">
                         <?= htmlspecialchars_decode($episode->details); ?>
+                        </div>
                     </p>
+                    <!--Navigation episodes-->
+                    <div class=" row clearheight">
+                        <?php if (isset($previousEpisode) && $previousEpisode): ?>
+                        <div class="pull-left col-sm-2">
+                            <a href="<?= urlHtml('/episode/' . seo($previousEpisode->title) . '/' . $previousEpisode->id); ?>" class="btn btn-default">
+                            <span class="fa fa-angle-double-left"></span>
+                            L'épisode précédente
+                          </a>
+                        </div>                        
+                        <?php endif ?>
+                        <?php if (isset($nextEpisode) && $nextEpisode): ?>
+                        <div class="pull-right col-sm-2">
+                            <a href="<?= urlHtml('/episode/' . seo($nextEpisode->title) . '/' . $nextEpisode->id); ?>" class="btn btn-default">
+                            L'épisode suivante
+                            <span class="fa fa-angle-double-right"></span>
+                          </a>
+                        </div>                        
+                        <?php endif ?>
+                    </div>
                 </div>
                 <?php if ($related_episodes): ?>
                 <section id="blog" class="similaires">
@@ -67,7 +88,7 @@
                                     <div class="item">
                                         <div class="row">
                                             <?php $caresoul = 0; endif ?>
-                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                            <div class="col-sm-4 col-xs-6">
                                                 <div class="card text-center">
                                                     <img class="card-img-top" src="<?= assets('uploads/images/episodes/' . $episode->image); ?>" alt="" width="100%">
                                                     <div class="card-block">
@@ -111,7 +132,7 @@
                                 <?= ($comment->userID)? $comment->first_name . ' ' . $comment->last_name : 'Visiteur ' . $visitor++ ; ?>
                             </div>
                             <div class="comment-date">
-                                <?= date('d-m-Y H:i', $comment->created); ?>
+                                <?= date('d-m-Y H:i', $comment->created); ?><acronym title="Nombre de signalement"> <span class="fa fa-flag icon-flag pull-right"> <?= ($comment->reported>0)? $comment->reported :'' ?></span></acronym>
                             </div>
                             <div class="comment-text">
                                 <?= $comment->comment; ?>
@@ -146,7 +167,7 @@
                       <input type="email" class="form-control" name="email" id="email" placeholder="ex@mail.fr"/>
                     </div>
                     <?php else: ?>
-                        <div class="message-input form-group col-sm-12"><?= $user->first_name . ' ' .  $user->last_name  ; ?>
+                        <div class="comment-text message-input form-group col-sm-12"><?= $user->first_name . ' ' .  $user->last_name  ; ?>
                         </div>
                     <?php endif ?>
                     <div class="message-input form-group col-sm-12">

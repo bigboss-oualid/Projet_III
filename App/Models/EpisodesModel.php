@@ -247,12 +247,32 @@ class EpisodesModel extends Model
      *
      * @return stdClass
      */
-	public function getEpisode(int $id)
+	public function getEpisode(int $id, $link = null)
 	{
 		return $this->select('e.*', 'ch.name AS `chapter`')
 					->from('episodes e')
 					->join('LEFT JOIN chapters ch ON e.chapter_id=ch.id')
 	                ->where('e.id=?', $id)
+	                ->fetch();
+	}
+
+	/**
+     * Get next or last episode
+     * 
+     * @param int $id
+     *
+     * @return stdClass
+     */
+	public function getPaginationEpisode(int $id, $link, $chapter_id)
+	{
+		$where  = ($link == 'previous')? ' chapter_id=? AND id<? AND status=? ' : ' chapter_id=? AND id>? AND status=? ';
+		$order = ($link == 'previous')? ' DESC ' : 'ASC';
+
+		return $this->select('id, title')
+					->from('episodes')
+	                ->where($where,  $chapter_id,  $id, 'Activé')
+	                ->orderBy('id', $order)
+	                ->limit(1)
 	                ->fetch();
 	}
 
