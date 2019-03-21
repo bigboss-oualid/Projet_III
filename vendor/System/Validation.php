@@ -47,7 +47,59 @@ class Validation
 		$inputValue = $this->value($inputName);
 
 		if ($inputValue === '') {
-			$message = $customErrorMessage ?: sprintf('%s est requis', ucfirst($inputName));
+			$message = $customErrorMessage ?: sprintf('%s est nécessaire', ucfirst($inputName));
+			$this->addError($inputName, $message);
+		}
+		
+		return $this;
+	}
+
+	/**
+	 * Detrmine if the given input file exist
+	 *
+	 * @param string $inputName
+	 * @param string $customErrorMessage
+	 *
+	 * @return $this
+	 */
+	public function requiredFile(string $inputName, string $customErrorMessage = null)
+	{
+		if ($this->hasErrors($inputName)) {
+			return $this;
+		}
+
+		$file = $this->app->request->file($inputName);
+
+		if (! $file->exists()) {
+			$message = $customErrorMessage ?: 'L\'image est nécessaire';
+			$this->addError($inputName, $message);
+		}
+
+		return $this;
+	}
+
+	/**
+	 * Detrmine if the given input file is an image
+	 *
+	 * @param string $inputName
+	 * @param string $customErrorMessage
+	 *
+	 * @return $this
+	 */
+	public function image(string $inputName, string $customErrorMessage = null)
+	{
+		if ($this->hasErrors($inputName)) {
+			return $this;
+		}
+
+		$file = $this->app->request->file($inputName);
+
+		if (! $file->exists()) {
+			return $this;
+		}
+
+		if (! $file->isImage()) {
+			$message = $customErrorMessage ?: sprintf('Le fichier %s n\'est pas une image valide', ucfirst($inputName));
 			$this->addError($inputName, $message);
 		}
 
@@ -95,12 +147,44 @@ class Validation
 		$inputValue = $this->value($inputName);
 
 		if (! filter_var($inputValue, FILTER_VALIDATE_EMAIL)) {
-			$message = $customErrorMessage ?: sprintf('%s n\'est pas une adresse email valide', ucfirst($inputName));
+			$message = $customErrorMessage ?: 'Adresse mail est non valide';
 			$this->addError($inputName, $message);
 		}
 
 		return $this;
 	}
+
+	/**
+	 * Determine if the phone number is correct
+	 *
+	 * @param mixed $phone
+	 *
+	 * @return $this
+	 */
+	 function validatePhoneNumber(string $inputName, int $minLen = null, int $maxLen = null, string $customErrorMessage = null)
+    {
+    	if ($this->hasErrors($inputName)) {
+			return $this;
+		}
+
+		$inputValue = $this->value($inputName);
+		$message = '';
+
+		// Allow +, - and . in phone number
+         if (! $filteredPhoneNumber = filter_var($inputValue, FILTER_SANITIZE_NUMBER_INT)) {
+			$message = $customErrorMessage ?: 'Numéro de Téléphone est non valide';
+			$this->addError($inputName, $message);
+		}
+         // Remove "-" from number
+         $phoneToCheck = str_replace("-", "", $filteredPhoneNumber);
+         // Check the lenght of number
+         if (strlen($phoneToCheck) < $minLen || strlen($phoneToCheck) >= $maxLen) {
+            $message .= 'Le numero de téléphone doit avoir entre ' . $minLen .' et ' . $maxLen . 'numéros';
+            $this->addError($inputName, $message);
+         }
+
+		return $this;  
+    }
 
 	/**
 	 * Detrmine if The given input should be at least the given $length
@@ -245,7 +329,6 @@ class Validation
 	 */
 	public function validate()
 	{
-
 		return $this;
 	}
 
@@ -279,6 +362,15 @@ class Validation
 		return $this->errors;
 	}
 
+	/**
+	 * Display errors message one after another
+	 *
+	 * @return string
+	 */
+	public function detachMessages(): string
+	{
+		return implode('<br>', $this->errors);
+	}
 
 	/**
 	 * Get the value for the given input name
@@ -316,31 +408,4 @@ class Validation
 	{
 		return array_key_exists($inputName, $this->errors);
 	}
-
-	/**
-	 * The given input must be uploaded
-	 *
-	 * @param string      $inputName
-	 * @param string|null $customErrorMessage
-	 *
-	 * @return $this
-	 */
-	public function requiredFile(string $inputName, string $customErrorMessage = null)
-	{
-		return $this;
-	}
-
-	/**
-	 * the input must be valid image
-	 *
-	 * @param string      $inputName
-	 * @param string|null $customErrorMessage
-	 *
-	 * @return $this
-	 */
-	public function image(string $inputName, string $customErrorMessage = null)
-	{
-		return $this;
-	}
-
 }
