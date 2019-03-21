@@ -33,54 +33,46 @@ class File
 	 * Determine wether the given file path exists
 	 * 
 	 * @param  string $file
+	 * 
 	 * @return bool
 	 */
 	public function exists(string $file): bool
 	{
-		return file_exists($file);
+		return file_exists($this->to($file));
 	}
 
-	 /**
-     * Require The given file
-     *
-     * @param string $file
-     * @return mixed
-     */
-    public function call($file)
-    {
-        return require $this->to($file);
-    }
-
 	/**
-	 * require the given file
+	 * Require the given file
 	 * 
 	 * @param  string $file
-	 * @return void
+	 * @return mixed
 	 */
-	public function require(string $file): void
+	public function call(string $file)
 	{
-		require $file;
-	}
-
-	/**
-	 * Generate full path to the given path in vendor folder
-	 * 
-	 * @param  string $path 
-	 * @return string
-	 */
-	public function toVendor(string $path): string
-	{
-		return $this->to('vendor/' . $path);
+		return require $this->to($file);
 	}
 
 	/**
 	 * Generate full path to the given path and separate the folders with the default DS of operating system
 	 * 
 	 * @param  string $path 
+	 * 
 	 * @return string
 	 */
 	public function to(string $path): string
 	{
 		return $this->root . static::DS . str_replace(['/', '\\'], static::DS, $path);
+	}
+
+	/**
+	 * Generate full path to the given path in public folder
+	 * 
+	 * @param  string $path 
+	 * 
+	 * @return string
+	 */
+	public function toPublic(string $path): string
+	{
+		return $this->to('public/' . $path);
 	}
 }
