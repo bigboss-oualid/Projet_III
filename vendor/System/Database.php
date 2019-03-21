@@ -56,6 +56,19 @@ class Database
 	 */
 	private $wheres = [];
 
+	/**
+     * Havings clause container
+     *
+     * @var array
+     */
+    private $havings = [];
+
+     /**
+     * Group By clause container
+     *
+     * @var array
+     */
+    private $groupBy = [];
 
 	/**
 	 * Determine which column(s) will be selected
@@ -129,9 +142,9 @@ class Database
 	 */
 	private function connect(): void
 	{
-		$parameterBd = $this->app->file->call('config.php');
+		$parameter = $this->app->file->call('config.php');
 
-		$connectionData = array_get($parameterBd, 'db');
+		$connectionData = array_get($parameter, 'db');
 
 		extract($connectionData);
 
@@ -435,6 +448,14 @@ class Database
 			$sql .= ' WHERE ' . implode(' ' , $this->wheres) . ' ';
 		}
 
+		if ($this->havings) {
+             $sql .= ' HAVING ' . implode(' ', $this->havings) . ' ';
+         }
+
+		if($this->orderBy) {
+			$sql .= ' ORDER BY ' . implode(' ' , $this->orderBy);
+		}
+
 		if($this->limit) {
 			$sql .= ' LIMIT ' . $this->limit;
 		}
@@ -442,10 +463,10 @@ class Database
 		if($this->offset) {
 			$sql .= ' OFFSET ' . $this->offset;
 		}
-
-		if($this->orderBy) {
-			$sql .= ' ORDER BY ' . implode(' ' , $this->orderBy);
-		}
+                                               
+         if ($this->groupBy) {
+             $sql .= ' GROUP BY ' . implode(' ' , $this->groupBy);
+         }
 
 		return $sql;
 	}
@@ -470,7 +491,7 @@ class Database
 	/**
 	 * Add new where clause
 	 * 
-	 * @param  array
+	 * @param  array $bindings
 	 * 
 	 * @return $this
 	 */
@@ -484,6 +505,38 @@ class Database
 
 		return $this;
 	}
+
+      /**
+      * Add New Having clause
+      *
+      * @return $this
+      */
+     public function having()
+     {
+         $bindings = func_get_args();
+
+         $sql = array_shift($bindings);
+
+         $this->addToBindings($bindings);
+
+         $this->havings[] = $sql;
+
+         return $this;
+     }
+
+      /**
+      * Group By Clause
+      *
+      * @param array $arguments
+      * 
+      * @return $this
+      */
+     public function groupBy(...$arguments)
+     {
+         $this->groupBy = $arguments;
+
+         return $this;
+     }
 	
 	/**
 	 * Execute the given sql statment
@@ -543,6 +596,8 @@ class Database
 		$this->data = [];
 		$this->bindings = [];
 		$this->wheres = [];
+        $this->havings = [];
+        $this->groupBy = [];
 		$this->joins = [];
 		$this->selects = [];
 		$this->orderBy = [];
