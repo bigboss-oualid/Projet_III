@@ -27,23 +27,22 @@ abstract class Model
 	{
 		$this->app = $app;
 
-		$this->table = $this->table();
-
+		$this->table();
 	}
 
 	/**
 	 * Get the name of table
 	 * 
-	 * @return string
+	 * @return void
 	 */
-	protected function table(): string
+	protected function table(): void
 	{
 		if (is_null($this->table)) 
 		{
 			$parts = explode('\\', get_class($this));
 			$class_name = end($parts);
 			
-			return $this->table = strtolower(str_replace('Model', '', $class_name));
+			$this->table = strtolower(str_replace('Model', '', $class_name));
 		}
 	}
 
@@ -60,11 +59,36 @@ abstract class Model
 	}
 
 	/**
+	 * Determine if the given value of the key exists in the table
+	 *
+	 * @param mixed $value
+	 * @param string $key
+	 *
+	 * @return bool
+	 */
+	public function exists($value, string $key = 'id'): bool
+	{
+		return (bool) $this->select($key)->where($key . ' = ? ', $value)->fetch($this->table);
+	}
+
+	/**
+	 * Delete record by ID
+	 *
+	 * @param int $id
+	 *
+	 * @return void
+	 */
+	public function delete(int $id): void
+	{
+		$this->where('id = ?', $id)->delete($this->table);
+	}
+
+	/**
 	 * Call Database methods dynamically
 	 * 
 	 * @param  string $method 
-	 * @param  array  $args  
-	 *  
+	 * @param  array  $args 
+	 *   
 	 * @return mixed
 	 */
 	public function __call(string $method, array $args)
