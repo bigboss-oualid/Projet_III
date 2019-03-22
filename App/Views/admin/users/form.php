@@ -47,7 +47,7 @@
               <label for="gender">sexe</label>
               <select class="form-control" id="gender" name="gender">
                   <option value="homme">Homme </option>
-                  <option value="femme" <?= $gender == 'femme' ? 'selected' : false; ?> >Femme</option>
+                  <option value="femme" <?= ($gender == 'femme') ? 'selected' : false; ?> >Femme</option>
               </select>
             </div>
 

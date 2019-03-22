@@ -91,6 +91,7 @@ class Application
 	 * Load Class through autoloading
 	 * 
 	 * @param  string  $class 
+	 * 
 	 * @return void
 	 */
 	public function load(string $class): void

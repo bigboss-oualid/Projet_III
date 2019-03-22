@@ -95,7 +95,4 @@ class UsersGroupsModel extends Model
 		$successMessage = 'Le Groupe numéro [<strong>' . $id . '</strong>] a été modifé avec succès ';
 		return $successMessage;
 	}
-
-
-	
 }

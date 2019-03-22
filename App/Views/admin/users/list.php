@@ -53,17 +53,18 @@
                         <td class="col-sm-1 col-xs-1">
                           <strong><?= $user->last_name . " " . $user->first_name;?></strong>
                         </td>
-                        <td class="col-sm-2 col-xs-2"><?= $user->group;?></td>
+                        <td class="col-sm-2 col-xs-2"><?= (isset($user->group))? $user->group: 'Blog';?></td>
                         <td class="col-sm-1 col-xs-1"><?= $user->status;?></td>
                         <td class="col-sm-1 col-xs-1 hidden-sm hidden-xs"><?= date('d/m/Y', $user->created);?></td>
                         <td class="col-sm-3 col-xs-3"><?= $user->email;?></td>
                         <td class="col-sm-2 col-xs-1 ">
                           <div class="text-center">
-                            <button class="btn btn-primary open-popup" type="button"  data-target="<?= urlHtml('/admin/users/edit/' . $user->id); ?>" data-modal-target="#edit-user-<?= $user->id; ?>">
-                              <span class="hidden-sm hidden-xs ">Modifer</span>
-                              <span class="fa fa-pencil-alt"></span>
-                            </button>
                             <?php if ($user->id != 1): ?>
+                              <button class="btn btn-primary open-popup" type="button"  data-target="<?= urlHtml('/admin/users/edit/' . $user->id); ?>" data-modal-target="#edit-user-<?= $user->id; ?>">
+                                <span class="hidden-sm hidden-xs ">Modifer</span>
+                                <span class="fa fa-pencil-alt"></span>
+                              </button>
+                            
                               <button data-target="<?= urlHtml('/admin/users/delete/' . $user->id); ?>" class="btn btn-danger delete">
                                 <span class="hidden-sm hidden-xs ">Supprimer</span>
                                 <span class="fa fa-trash-alt"></span>

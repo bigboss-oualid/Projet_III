@@ -42,11 +42,7 @@ class EpisodesModel extends Model
 	 /**
      * Count all Activited episodes
      *
-<<<<<<< HEAD
      * @return stdClass
-=======
-     * @return array
->>>>>>> feature/admin
      */
     public function totalEnabled()
     {
@@ -60,17 +56,11 @@ class EpisodesModel extends Model
 	 /**
      * Get latest episodes
      *
-<<<<<<< HEAD
      * @param string $limit
      *
      * @return array
      */
     public function latest(int $limit = 0): array
-=======
-     * @return array
-     */
-    public function latest(int $limit = 0)
->>>>>>> feature/admin
     {
         //Get the latest added episodes
         return $this->select('e.*', 'c.name AS `chapter`', 'u.first_name', 'u.last_name')
@@ -99,21 +89,13 @@ class EpisodesModel extends Model
 			$this->data('image', $image);
 		}
 
-<<<<<<< HEAD
 		$user =  $this->user;
-=======
-		/*$user =  $this->user;
->>>>>>> feature/admin
 
 		if ($user->id >= 0) {
 			$user_id = $user->id; 
 		} else {
 			$user_id = 0;
-<<<<<<< HEAD
 		}
-=======
-		}*/
->>>>>>> feature/admin
 		
 		$title = ucfirst($this->request->post('title'));
 
@@ -265,11 +247,7 @@ class EpisodesModel extends Model
      *
      * @return stdClass
      */
-<<<<<<< HEAD
 	public function getEpisode(int $id, $link = null)
-=======
-	public function getEpisode(int $id)
->>>>>>> feature/admin
 	{
 		return $this->select('e.*', 'ch.name AS `chapter`')
 					->from('episodes e')
@@ -279,7 +257,6 @@ class EpisodesModel extends Model
 	}
 
 	/**
-<<<<<<< HEAD
      * Get next or last episode
      * 
      * @param int $id
@@ -300,8 +277,6 @@ class EpisodesModel extends Model
 	}
 
 	/**
-=======
->>>>>>> feature/admin
      * Get all episodes with the corresponding name of its chapter
      *
      * @return array

@@ -36,8 +36,6 @@ class AccessController extends Controller
 
         $usersGroupsModel = $this->load->model('UsersGroups');
 
-
-
         $usersGroup = $usersGroupsModel->get($user->users_group_id);
 
         // user's blog try to access admin page or No permissions to access an admin page

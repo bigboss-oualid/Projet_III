@@ -47,7 +47,7 @@
           <!--Object -->
           <div class="panel panel-success">
             <div class="panel-heading"> 
-              <h3 class="panel-title text-center"><span class="fa fa-edit"></span>  <b>Objet</h3>
+              <h3 class="panel-title text-center"><span class="fa fa-edit"></span>  <b>Répondre</h3>
             </div>
             <textarea name="details" class="details" id="details" cols="30" rows="10"></textarea>
           

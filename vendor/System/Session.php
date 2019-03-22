@@ -28,7 +28,7 @@ class Session
 	 */
 	public function start(): void
 	{		
-		// avoid attacks that use session identifiers in URLs more secure setting will be added later
+		// avoid attacks that use session identifiers in URLs more secure setting must be added later
 		ini_set('session.use_only_cookies', 1);
 
 		if(! session_id()) {
@@ -83,9 +83,7 @@ class Session
 	 */
 	public function remove(string $key): void
 	{
-		if($this->has($key)) {
 			unset($_SESSION[$key]);
-		}
 	}
 
 	/**
@@ -121,6 +119,7 @@ class Session
 	public function destroy(): void
 	{
 		session_destroy();
+		
 		unset($_SESSION);
 	}
 }

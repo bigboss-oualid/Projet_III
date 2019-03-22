@@ -35,7 +35,7 @@ class LayoutController extends Controller
     /**
     * Disable content from layout page
     *
-    * @oaram string $section
+    * @param string $section
     * 
     * @return $this
     */
@@ -50,6 +50,7 @@ class LayoutController extends Controller
      * Set the title for the blog page
      *
      * @param string $title
+     * 
      * @return void
      */
     public function title($title)

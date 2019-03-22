@@ -1,8 +1,9 @@
 <!-- Contact Page -->
 <div id="register-page" class="page box">
     <!-- Centered Content -->
-    <div class="centered-content">
-        <h1 class="heading">Ici vous pouvez me laisser un message je vous répondrai au plus vite possible</h1>
+    <div class="centered-content clearheight">
+        <p id="titrepage" class="text-center"><span class="ion-minus fa fa-minus"> </span>Contactez moi ! <span class="fa fa-minus"> </span></p>
+      <hr id="hrapropos">
         <!-- Form -->
         <form action="<?= urlHtml('/contact-me/submit'); ?>" class="form">
           <div id="form-results"></div>

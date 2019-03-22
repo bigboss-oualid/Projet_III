@@ -7,13 +7,6 @@ use System\File;
 class UploadedFile
 {
 	/**
-	 * Application Object
-	 *
-	 * @var \System\Application
-	 */
-	private $app;
-
-	/**
 	 * The uploaded File Data given from _FILES variable
 	 *
 	 * @var array
@@ -206,6 +199,7 @@ class UploadedFile
 	 *
 	 * @param  string 	   $target
 	 * @param  string|null $fileName
+	 * 
 	 * @return string
 	 */
 	public function moveTo(string $target, string $newFileName = null): string

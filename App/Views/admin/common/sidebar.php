@@ -94,7 +94,7 @@
         <li id="settings-link" class="sidebar-link">
           <a href="<?= urlHtml('/admin/settings'); ?>">
             <i class="fa fa-tools "></i>
-            <span>Réglages</span>
+            <span>Paramétrage du site</span>
           </a>
         </li>
         <?php endif ?>

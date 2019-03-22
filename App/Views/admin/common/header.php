@@ -93,14 +93,14 @@
                   <img src="<?= assets('uploads/images/users/' . $user->image); ?>"  class="img-circle" alt="<?= $user->first_name . ' ' . $user->last_name; ?>" title="<?= $user->last_name; ?>">
                   <p><b>
                     <?= $user->last_name . '</b> ' . $user->first_name; ?> - <?= $user->user_group ?> 
-                    <small>Membre depuis <?= date('d-m-Y', $user->created); ?></small>
+                    <small>Membre depuis <?= date('d/m/Y', $user->created); ?></small>
                   </p>
                 </li>
                 <!-- Menu Body -->
                 <li class="user-body">
                   <div class="row">
 
-                    <div class="col-xs-4 text-center">
+                    <div class="col-xs-6 text-center">
                       <form action="<?= urlHtml('/'); ?>">
                         <button class="btn btn-warning">
                           <span class="fa fa-blog"></span>
@@ -109,22 +109,11 @@
                       </form>
                     </div>
 
-                    <div class="col-xs-4 text-center">
-                      <form action="<?= urlHtml('/'); ?>">
-                        <button class="btn btn-warning">
-                          <span class="fa fa-user"></span>
-                          Blog
-                        </button>
-                      </form>
-                    </div>
-
-                    <div class="col-xs-4 text-center">
-                      <form action="<?= urlHtml('/'); ?>">
-                        <button class="btn btn-warning">
-                          <span class="fa fa-user"></span>
-                          Blog
-                        </button>
-                      </form>
+                    <div class="col-xs-6 text-center">
+                      <button type="button" class="btn btn-success" data-toggle="modal" data-target="#user-profile">
+                        <span class="fa fa-user"></span>
+                        Profil
+                      </button>
                     </div>
 
                   </div>
@@ -132,14 +121,9 @@
                 </li>
                 <!-- Menu Footer-->
                 <li class="user-footer">
-                  <div class="pull-left">
-                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#user-profile">
-                          <span class="fa fa-user"></span>
-                          Profil
-                      </button>
-                  </div>
+                  
                   <!-- Logout -->
-                  <div class="pull-right">
+                  <div class="text-center">
                     <form action="<?= urlHtml('/admin/logout'); ?>">
                         <button class="btn btn-danger" ><span class="fa fa-power-off"></span> Déconnexion</button>
                     </form>

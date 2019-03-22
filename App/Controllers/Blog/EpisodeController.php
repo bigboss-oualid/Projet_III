@@ -23,6 +23,14 @@ class EpisodeController extends Controller
 
         $episode =  $modelEpisode->getEpisodeWithComments($id);
 
+        // Set data if the episode exist 
+        if ($episode) {
+            $this->html->setTitle($episode->title);
+            $data['nextEpisode'] = $modelEpisode->getPaginationEpisode($id, 'next', $episode->chapter_id);
+            $data['previousEpisode'] = $modelEpisode->getPaginationEpisode($id, 'previous', $episode->chapter_id);
+        }
+
+
         //Set view's number with session
         if(! $this->session->has('view_' .  $episode->id) ) {
 
@@ -40,7 +48,6 @@ class EpisodeController extends Controller
             return $this->url->redirectTo('/404');
         }
 
-        $this->html->setTitle($episode->title);
 
 
         $data['episode'] = $episode;
@@ -150,7 +157,7 @@ class EpisodeController extends Controller
         $comment = $commentModel->getComment($id);
 
         $episodeTitle = $comment->episode;
-        $episodeId    =$comment->episode_id;
+        $episodeId    = $comment->episode_id;
 
         //Get number of times that comment has been reported
         $reported = $comment->reported;

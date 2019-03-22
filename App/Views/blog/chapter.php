@@ -9,15 +9,15 @@
     <!-- Main Content -->
     <div class="col-sm-9 col-xs-12" id="main-content">
         <!-- chapter Page -->
-        <?php if ($chapter->episodes) { ?>
-        <div id="category-page">
-            <?php foreach ($chapter->episodes AS $chunked_episodes) { ?>
-                <?php foreach ($chunked_episodes AS $episode) { $episode->chapter = $chapter->name; ?>
+        <?php if ($chapter->episodes): ?>
+        <div id="category-page" >
+            <?php foreach ($chapter->episodes AS $chunked_episodes) : ?>
+                <?php foreach ($chunked_episodes AS $episode) : $episode->chapter = $chapter->name; ?>
                 <div class="col-sm-6">
                     <?= $episode_box($episode);?>
                 </div>
-                <?php } ?>
-            <?php } ?>
+                <?php endforeach ?>
+            <?php endforeach ?>
         </div>
         <!--/ chapter Page -->
         <div class="clearfix"></div>
@@ -34,11 +34,11 @@
                     <span class="fa fa-angle-left"></span>
               </a>
             </li>
-            <?php for ($page = 1; $page <= $pagination->last(); $page++) { ?>
+            <?php for ($page = 1; $page <= $pagination->last(); $page++) : ?>
                 <li<?= $page == $pagination->page() ? ' class="active"': false; ?>>
                     <a href="<?= $url . $page; ?>"><?= $page; ?></a>
                 </li>
-            <?php } ?>
+            <?php endfor ?>
             <li>
               <a href="<?= $url . $pagination->next(); ?>" aria-label="Next">
                 <span class="fa fa-angle-right"></span>
@@ -52,10 +52,10 @@
           </ul>
         </nav>
         <!--/ Pagination Links -->
-        <?php  } else { ?>
+        <?php   else : ?>
             <div class="box" style="padding: 10px;">
                 <h1 class="bold">Aucun épisode dans ce chapitre</h1>
             </div>
-        <?php } ?>
+        <?php endif ?>
     </div>
     <!--/ Main Content -->

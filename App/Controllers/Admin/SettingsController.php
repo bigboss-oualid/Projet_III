@@ -40,9 +40,9 @@ class SettingsController extends Controller
     }
 
     /**
-    * Submit for creating new ad
+    * Submit for creating new settings
     *
-    * @return string | json
+    * @return string
     */
     public function save()
     {

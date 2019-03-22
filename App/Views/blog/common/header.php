@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -61,10 +61,10 @@
                   </ul>
                 </li>
                 <li>
-                    <a href="<?= urlHtml('/about-me'); ?>">Qui suis-je?</a>
+                    <a href="<?= urlHtml('/about-me'); ?>">Qui suis-je ?</a>
                 </li>
                 <li>
-                    <a href="<?= urlHtml('/contact-me'); ?>">Contactez-moi</a>
+                    <a href="<?= urlHtml('/contact-me'); ?>">Contactez-moi !</a>
                 </li>
               </ul>
               <ul class="nav navbar-nav navbar-right">
@@ -78,7 +78,9 @@
                   <ul class="dropdown-menu">
                     <li>
                         <a href="<?= urlHtml('/profile') ?>">Mon profil</a>
-                        <a href="<?= urlHtml('/profile/episodes') ?>">Mes commentaires</a>
+                        <?php if ($user->users_group_id != 0): ?>
+                        <a href="<?= urlHtml('/admin') ?>">Administration</a>
+                        <?php endif ?>
                         <a href="<?= urlHtml('/logout') ?>">Logout</a>
                     </li>
                   </ul>

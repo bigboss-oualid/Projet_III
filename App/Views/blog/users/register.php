@@ -2,7 +2,8 @@
 <div id="register-page" class="page box">
     <!-- Centered Content -->
     <div class="centered-content">
-        <h1 class="heading">Crée un nouveau compte</h1>
+        <p id="titrepage" class="text-center"><span class="ion-minus fa fa-minus"> </span>Crée un nouveau compte<span class="fa fa-minus"> </span></p>
+        <hr id="hrapropos">
         <!-- Form -->
         <form action="<?= urlHtml('/register/submit'); ?>" class="form">
             <div id="form-results"></div>
@@ -53,7 +54,7 @@
             </div>
 
             <div class="form-group">
-                <div class=" col-sm-offset-3 col-sm-9">
+                <div class="col-sm-offset-3 col-sm-9">
                     <button class="button bold submit-btn">S'inscrire</button>
                  </div>
             </div>

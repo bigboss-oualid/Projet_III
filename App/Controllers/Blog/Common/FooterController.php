@@ -14,6 +14,7 @@ class FooterController extends Controller
     public function index(): string
     {
         $data['user'] = $this->load->model('Login')->user();
+        $data['site_name'] = $this->settings->get('site_name');
 
         return $this->view->render('blog/common/footer', $data);
     }

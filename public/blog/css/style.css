@@ -3,6 +3,61 @@
 /*episode similaire*/
 @import url(https://fonts.googleapis.com/css?family=Raleway:400,900,700,600,500,300,200,100,800);
 
+.user-img {
+    margin: auto;
+    width:200px; 
+    height: 200px;
+}
+.image-upload>input {
+  display: none;
+}
+#supprimer-compte{
+    color: #900C3F;
+    margin-top: -15px;
+}
+#hrapropos{
+    margin-top: -3px;
+    padding-bottom: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 450px;
+    border-width: 3px;
+    border-color: #F1BF5C;
+}
+
+#hr-user{
+    margin-top: -3px;
+    padding-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 450px;
+    border-width: 3px;
+    border-color: #F1BF5C;
+}
+
+.centerelement{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.episodedetails{
+    margin: 0px 30px 0px 30px;
+    font-size: 25px !important;
+    text-align: justify !important;
+    text-justify: inter-word !important;
+}
+
+.clearheight{
+    padding-bottom: 30px;
+}
+
+#titrepage{
+    padding-top: 20px;
+    font-weight: bold;
+    color: #01445E;
+    font-size: 45px;
+}
+
 .similaires{
     padding:60px 0px;
     font-family: 'Raleway', sans-serif;
@@ -17,6 +72,13 @@ h2 {
     font-family: 'Raleway', sans-serif;
 }
 
+/*
+ *icon views
+ */
+.icon-views{
+    color:   #17A362 ;
+    text-shadow: 1px 1px 1px #ccc;
+}
 
 .ion-minus{
     padding:0px 10px;
@@ -59,6 +121,15 @@ h2 {
     padding: 13px 20px;
     font-size: 13px;
     font-weight: 600;
+}
+
+/*
+ * reported comment signe
+ */
+.icon-flag {
+    color: red;
+    font-size: 1.5em;
+    text-shadow: 1px 1px 1px #ccc;
 }
 /*phone  input*/
 .intl-tel-input {
@@ -342,10 +413,10 @@ header .user-image {
     font-family: 'Lato';
     font-weight: 700;
     font-size: 40px;
-    color: #FF3300;
+    color: #01445E;
 }
 .post-box .heading a {
-    color: #FF3300;
+    color: #01445E;
 }
 
 .post-box .details {
@@ -702,13 +773,18 @@ footer .social a {
 }
 
 #post-page #comment-form .comment-button {
-    background: #000;
+    background: #01445E;
     color: #FFF;
     border-radius: 4px;
     border: none;
     padding: 6px 14px;
     margin-top: 10px;
     float: right;
+}
+.comment-text {
+    padding-top: 3px;
+    color: #01445E;
+    font-size: 24px;
 }
 
 /** Comment Form */

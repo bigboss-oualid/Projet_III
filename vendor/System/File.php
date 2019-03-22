@@ -45,6 +45,7 @@ class File
 	 * Require the given file
 	 * 
 	 * @param  string $file
+	 * 
 	 * @return mixed
 	 */
 	public function call(string $file)

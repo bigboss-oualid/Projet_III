@@ -24,7 +24,7 @@ class Url
 	/**
 	 * Generate full link for the given path
 	 *
-	 * ´@param string  $path
+	 * @param string  $path
 	 * 
 	 * @return string
 	 */

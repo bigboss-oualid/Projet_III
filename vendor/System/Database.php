@@ -125,6 +125,7 @@ class Database
 			$this->connect();
 		}
 	}
+
 	/**
 	 * Determine if there is any connection to database
 	 * 
@@ -228,6 +229,7 @@ class Database
 
 		return $this;
 	}
+	
 	/**
 	 * Insert Data to database
 	 *
@@ -419,7 +421,7 @@ class Database
 	 * 
 	 * @return int
 	 */
-	public function rows()
+	public function rows(): int
 	{
 		return $this->rows;
 	}
@@ -429,7 +431,7 @@ class Database
 	 *
 	 * @return string
 	 */
-	private function fetchStatment()
+	private function fetchStatment(): string
 	{
 		$sql = 'SELECT ';
 
@@ -542,6 +544,7 @@ class Database
 	 * Execute the given sql statment
 	 *
 	 * @param mixed
+	 * 
 	 * @return \PDOStatment
 	 */
 	public function query(...$bindings)

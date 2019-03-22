@@ -46,6 +46,10 @@
         <!--/ Slideshow -->
         <!-- Main Content -->
         <div class="col-sm-9 col-xs-12" id="main-content">
+          <section class="box wow fadeInDown" data-wow-duration="2s" id="social-widget">
+            <p id="titrepage" class="text-center"><span class="ion-minus fa fa-minus"> </span> Mes dérniers épisodes <span class="fa fa-minus"> </span>
+            </p>
+          <hr id="hrapropos"></section>
           <div class="row">
             <?php foreach ($episodes AS $episode): ?>
               <span class="col-sm-6">
