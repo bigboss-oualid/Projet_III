@@ -4,17 +4,23 @@ use System\Application;
 
 if (! function_exists('pre')) {
 	/**
-	 * Visualize the given variable in browser
+	 * Visualize the given variable in browser and exit the application 
 	 *
-	 * @param mixed $var
+	 * @param mixed   $var default exit the pallicaion or send 0 to continue
+	 * @param mixed $stop
+	 * 
 	 * @return void
 	 */
-	function pre($var): void
+	function pre($var, $stop = 1): void
 	{
 		echo '<pre>';
-//		var_dump($var);
+	//var_dump($var);
 		print_r($var);
 		echo '</pre>';
+
+		if ($stop){
+			die();	
+		} 
 	}
 }
 
@@ -26,6 +32,7 @@ if(! function_exists('array_get')) {
 	 * @param  array        $array
 	 * @param  string|int   $key
 	 * @param  mixed        $default
+	 * 
 	 * @return mixed
 	 */
 	function array_get(array $array, $key, $default = null)
@@ -64,7 +71,7 @@ if(! function_exists('assets')) {
 	}
 }
 
-if(! function_exists('urlHtm')) {
+if(! function_exists('urlHtml')) {
 	/**
 	 * Generate full path for the given path
 	 * 
@@ -77,5 +84,83 @@ if(! function_exists('urlHtm')) {
 		$app = Application::getInstance();
 
 		return $app->url->link($path);
+	}
+}
+
+if (! function_exists('read_more')) {
+    /**
+    * Cut the given string and get the given number of words from it
+    *
+    * @param string $string
+    * @param int $words_number
+    * 
+    * @return string
+    */
+    function read_more(string $string, int $words_number): string
+    {
+        // Remove any empty values in the exploded array
+        $words_in_string = array_filter(explode(' ' , $string));
+
+        if (count($words_in_string) <= $words_number) {
+        	//return the whole string
+            return $string;
+        }
+
+        $cutedContent = implode(' ', array_slice($words_in_string, 0, $words_number));
+
+        return $cutedContent;
+
+    }
+}
+
+if (! function_exists('seo')) {
+     /**
+     * Remove any unwanted characters from the given string
+     * and replace it with -
+     *
+     * @param string $string
+     * 
+     * @return string
+     */
+    function seo(string $string): string
+    {
+        // remove any white spaces from the beginning & the end of the given string
+        $string = trim($string);
+
+        // replace any non alphabe or numeric characters and dashes with white space
+        $string = preg_replace('#[^\w]#', ' ' , $string);
+
+        // replace any multi white spaces with just one white space
+        $string = preg_replace('#[\s]+#', ' ', $string);
+
+        $string = str_replace(' ', '-', $string);
+
+        // make all letters in small case letters & trim any dashes
+        return trim(strtolower($string), '-');
+    }
+}
+
+
+if (! function_exists('getMessage')) {
+
+     /**
+	 * Get message for how much comment are reported or disabled
+	 *
+	 * @param int $number
+	 * @param string $type
+	 *
+	 * @return string  message
+	 */
+	function getMessage(int $number, string $type): string
+	{
+		$message = ''; 
+		
+			if ($number > 0 AND $number < 2 ) {
+        		$message= '<span class="news-dash badge">'. $number .'</span><span> ' .$type . '  </span>' ;
+        	}elseif ($number > 1) {
+        		$message = '<span class="news-dash badge">'. $number .'</span><span> ' .$type . 's  </span>' ;
+        	}
+
+		return $message;
 	}
 }
