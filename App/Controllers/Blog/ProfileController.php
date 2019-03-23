@@ -50,7 +50,7 @@ class ProfileController extends Controller
 		$user = $loginModel->user();
         if ($this->isValid($user->id)) {			
             //No errors in form validation
-            $message = $this->load->model('Users')->update($user->id);
+            $message = $this->load->model('Users')->update($user->id, $user->users_group_id);
 
              $json['success'] = $message;
 

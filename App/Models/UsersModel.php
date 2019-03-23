@@ -79,7 +79,7 @@ class UsersModel extends Model
 	 *
 	 * @return string
 	 */
-	public function update(int $id,int $usersGroupId = null)
+	public function update(int $id,int $usersGroupId)
 	{
 		$image = $this->uploadImage();
 
@@ -88,25 +88,25 @@ class UsersModel extends Model
 		}
 
 		$first_name = ucfirst($this->request->post('first_name'));
-		$status = ucfirst($this->request->post('status'));
-		$password = $this->request->post('password');
-		 //to convert dd/mm/yyyy to timestamps need to replace "/" with "-" then convert
-		$birthday = strtotime(str_replace("/", "-", $this->request->post('birthday')));
+		$status     = ucfirst($this->request->post('status'));
+		$password   = $this->request->post('password');
+		$birthday   = $this->request->post('birthday');
+
+		if ($birthday) {
+			 //to convert dd/mm/yyyy to timestamps need to replace "/" with "-" then convert
+			$birthday = strtotime(str_replace("/", "-", $birthday));
+			 			$this->data('birthday', $birthday);
+		}
 
 		if ($password) {
 			$this->data('password', password_hash($password, PASSWORD_DEFAULT));
 		}
 
-		if (is_null($usersGroupId))
-		{
-			$usersGroupId =  ucfirst($this->request->post('users_group_id'));
-		}
 		$data = $this->data('first_name', $first_name)
 					 ->data('last_name', ucfirst($this->request->post('last_name')))
-					 ->data('gender', ucfirst($this->request->post('gender')))
+					 ->data('gender', $this->request->post('gender'))
 					 ->data('status', $status)
 					 ->data('email', $this->request->post('email'))
-					 ->data('birthday', $birthday)
 					 ->data('users_group_id', $usersGroupId)
 					 ->where('id=?', $id)
 					 ->update('users');
