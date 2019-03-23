@@ -169,11 +169,10 @@ class ContactsController extends Controller
 	private function getDetails($message, string $sendedFrom, string  $reply = null, string $repliedBy = null, string $repliedAt = null)
 	{
 		if (isset($reply)) {
-			$details = '<h3>Envois :</h3><blockquote>' .  html_entity_decode($reply) . '<small class="pull-right">Envoyer par: ' . $repliedBy .' </small><br><small class="pull-right">le: ' . $repliedAt .' </small><br></blockquote>';
+			$details = '<h3>Envoyé :</h3><blockquote>' .  html_entity_decode($reply) . '<small class="pull-right">Envoyer par: ' . $repliedBy .' </small><br><small class="pull-right">le: ' . $repliedAt .' </small><br></blockquote>';
 		}
-		$details  .='<h3>Réception :</h3><blockquote>' . html_entity_decode($message) . '<small class="pull-right">Envoyer par: ' . $sendedFrom .' </small><br></blockquote>';
+		$details  .='<h3>Reçu :</h3><blockquote>' . html_entity_decode($message) . '<small class="pull-right">Envoyer par: ' . $sendedFrom .' </small><br></blockquote>';
 
 		return $details;
 	}
-
 }

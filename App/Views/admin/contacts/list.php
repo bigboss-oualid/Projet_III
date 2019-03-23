@@ -11,8 +11,8 @@
       <ol class="breadcrumb">
         <li><a href="<?= urlHtml('/admin'); ?>"><i class="fa fa-tachometer-alt"></i> Tableau de borad</a></li>
         <li class="active">
-          <i class="fa fa-user"></i>
-          <span>Contacts</span>
+          <i class="fa fa-mail-bulk"></i>
+          <span>Boites aux lettres</span>
         </li>
       </ol>
     </section>
@@ -39,7 +39,7 @@
                           <th class="col-sm-1 col-xs-1">Téléphone</th>
                           <th class="col-sm-1 hidden-xs">email</th>
                           <th class="col-sm-1 hidden-xs">Crée</th>
-                          <th class="col-sm-3 col-xs-3">Répondu</th>
+                          <th class="col-sm-3 col-xs-3">Répondu par</th>
                           <th class="col-sm-2 col-xs-3">Action</th>
                       </tr>
                     <thead>
@@ -54,7 +54,7 @@
                         <td class="col-sm-1 col-xs-1"><?= $contact->phone;?></td>
                         <td class="col-sm-1 hidden-xs"><?= $contact->email;?></td>
                         <td class="col-sm-1 hidden-xs"><?= date('d/m/Y', $contact->created);?></td>
-                        <td class="col-sm-3 col-xs-3"><?= ($contact->reply)? 'Par: ' .   $contact->last_name:'Non';?></td>
+                        <td class="col-sm-3 col-xs-3"><h4><?= ($contact->reply)?   '<span class="label label-primary"><b>'.$contact->first_name.'</b></span>' :'_';?></h4></td>
                         <td class="col-sm-2 col-xs-3">
                           <div class="text-center">
                             <?php if ($contact->reply): ?>
