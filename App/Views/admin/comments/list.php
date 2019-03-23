@@ -33,7 +33,7 @@
             <div class="box-body table-responsive">
               <div class="col-xs-12" id="results"></div>
               <div class="container panel">
-              <?php if (isset($message)): ?>
+              <?php if (isset($message) && $message): ?>
                 <div class="btn-toolbar pull-left">
                     <a href="<?= urlHtml('/admin/episodes/all-reported-comments'); ?>" class="btn btn-danger btn-lg">
                       <span><?=  $message; ?></span>
@@ -44,7 +44,7 @@
                     </button>
                   </div>
                 <?php endif ?>
-                <?php if (isset($warning)): ?>
+                <?php if (isset($warning) && $warning): ?>
                   <div class="btn-toolbar pull-right">
                     <button data-target="<?= $delete_disabled; ?>" class="btn btn-warning delete">
                       <span class="hidden-sm hidden-xs">Supprimer tous les non validé</span>
