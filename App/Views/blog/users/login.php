@@ -9,13 +9,13 @@
             <div class="form-group">
                 <label for="email" class="col-sm-3 col-xs-12">Adresse e-mail</label>
                 <div class="col-sm-9 col-xs-12">
-                    <input type="email" name="email" id="email" placeholder="Email Address" class="input placeholder" />
+                    <input type="email" name="email" id="email" placeholder="Addresse Email" class="input placeholder" />
                 </div>
             </div>
             <div class="form-group">
                 <label for="password" class="col-sm-3 col-xs-12">Mot de passe</label>
                 <div class="col-sm-9 col-xs-12">
-                    <input type="password" name="password" id="password" placeholder="Password" class="input" />
+                    <input type="password" name="password" id="password" placeholder="Mot de passe" class="input" />
                 </div>
             </div>
             <div class="form-group">
