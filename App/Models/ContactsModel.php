@@ -52,7 +52,7 @@ class ContactsModel extends Model
         return $this->select('c.*', 'u.email AS `user_email`', 'u.first_name', 'u.last_name', 'users_group_id')
                     ->select('(SELECT COUNT(c.id) FROM contacts c WHERE c.replied_by = 0) AS new_contact')
                     ->from('contacts c')
-                    ->join('LEFT JOIN users u ON c.user_id=u.id')
+                    ->join('LEFT JOIN users u ON c.replied_by=u.id')
                     ->where('c.status != ?', 'Désactivé')
                     ->orderBy('c.replied_at')
                     ->fetchAll();
