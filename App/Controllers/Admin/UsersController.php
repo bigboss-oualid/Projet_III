@@ -158,19 +158,18 @@ class UsersController extends Controller
 		$data['status']         = array_get($user, 'status');
 		$data['users_group_id'] = array_get($user, 'users_group_id');
 		$data['email']          = array_get($user, 'email');
-		$data['image']          = array_get($user, 'image');
 		$data['gender']         = array_get($user, 'gender');
 		$data['users_group_id'] = array_get($user, 'users_group_id');
 
 		$data['birthday'] = '';
-		$data['image'] = '';
+        $data['image'] = '';
 
 		if (! empty($user['birthday'])) {
 			$data['birthday'] = date('d/m/Y', $user['birthday']);
 		}
 		if (! empty($user['image'])) {
 			//Default path to upload user image : public/uploads/images
-			$data['image'] = $this->url->link('public/uploads/images/users' . $user['image']);
+			$data['image'] = $this->url->link('public/uploads/images/users/' . $user['image']);
 		}
 
 	
