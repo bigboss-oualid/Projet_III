@@ -75,22 +75,21 @@ class UsersModel extends Model
 	 * Update the given users record and send success message back
 	 *
 	 * @param int $id
-	 * @param int $usersGroupId
 	 *
 	 * @return string
 	 */
-	public function update(int $id,int $usersGroupId)
+	public function update(int $id)
 	{
-		$image = $this->uploadImage();
+		$first_name     = ucfirst($this->request->post('first_name'));
+		$status         = ucfirst($this->request->post('status'));
+		$password       = $this->request->post('password');
+		$birthday       = $this->request->post('birthday');
+		$users_group_id =  $this->request->post('users_group_id');
+		$image 		= $this->uploadImage();
 
 		if ($image) {
 			$this->data('image', $image);
 		}
-
-		$first_name = ucfirst($this->request->post('first_name'));
-		$status     = ucfirst($this->request->post('status'));
-		$password   = $this->request->post('password');
-		$birthday   = $this->request->post('birthday');
 
 		if ($birthday) {
 			 //to convert dd/mm/yyyy to timestamps need to replace "/" with "-" then convert
@@ -102,12 +101,15 @@ class UsersModel extends Model
 			$this->data('password', password_hash($password, PASSWORD_DEFAULT));
 		}
 
+		if ($users_group_id) {
+			$this->data('users_group_id', $users_group_id);
+		}
+
 		$data = $this->data('first_name', $first_name)
 					 ->data('last_name', ucfirst($this->request->post('last_name')))
-					 ->data('gender', $this->request->post('gender'))
-					 ->data('status', $status)
 					 ->data('email', $this->request->post('email'))
-					 ->data('users_group_id', $usersGroupId)
+					 ->data('status', $status)
+					 ->data('gender', $this->request->post('gender'))
 					 ->where('id=?', $id)
 					 ->update('users');
 
