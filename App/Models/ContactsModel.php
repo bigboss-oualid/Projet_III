@@ -20,6 +20,7 @@ class ContactsModel extends Model
 			 ->data('email', $this->request->post('email'))
 			 ->data('subject', $this->request->post('subject'))
 			 ->data('message', $this->request->post('message'))
+			 ->data('created', $now = time())
 			 ->data('status', $this->request->post('Activé'))
 			 ->insert($this->table);
 
@@ -50,7 +51,7 @@ class ContactsModel extends Model
     {
         //Get the latest added episodes
         return $this->select('c.*', 'u.email AS `user_email`', 'u.first_name', 'u.last_name', 'users_group_id')
-                    ->select('(SELECT COUNT(c.id) FROM contacts c WHERE c.replied_by = 0) AS new_contact')
+                    ->select('(SELECT COUNT(c.id) FROM contacts c WHERE c.status = "Désactivé") AS new_contact')
                     ->from('contacts c')
                     ->join('LEFT JOIN users u ON c.replied_by=u.id')
                     ->where('c.status != ?', 'Désactivé')
@@ -67,7 +68,8 @@ class ContactsModel extends Model
 	 */
 	public function disabled(int $id): void
 	{
-		$this->data('status', 'Désactivé')->where('id = ?', $id)->update('contacts');	
+		$this->data('status', 'Désactivé')
+			 ->where('id = ?', $id)->update('contacts');	
 	}
 
 	/**
@@ -83,19 +85,24 @@ class ContactsModel extends Model
 		$replied_by =  $user->id;
 
 		$siteMail = $this->settings->get('site_email');
+		$siteName = $this->settings->get('site_name');
 
 		$contactsModel = $this->load->model('Contacts');
-		$contact = $contactsModel->get($id);		
+		$contact = $contactsModel->get($id);	
 
 		//Sending Mail can be change later with SMTP method sending
 		$to      = $contact->email;
-		$subject = 'Répondre à ' . $contact->subject;
-		$reply   = _escape($this->request->post('details'));
-		$headers = 'From:' . $siteMail . "\r\n" . 'Reply-To:' . $contact->email . "\r\n" . 'X-Mailer: PHP/' . phpversion();
+		$subject = $contact->subject;
+		$reply   = strip_tags($this->request->post('details'));
+		$headers = 'From: ' .$siteName. ' <' .$siteMail. ">\r\n" . 
+				   'Reply-To: ' . $contact->email . "\r\n" . 
+				   'X-Mailer: PHP/' . phpversion();
 
-		//mail($to, $subject, $reply, $headers);
+		//Send mail 
+		mail($to, $subject, $reply, $headers);
 
-		$this->data('reply', $reply)
+		//save mail in DB Table
+		$this->data('reply', _escape($this->request->post('details')))
 			 ->data('replied_by', $replied_by)
 			 ->data('replied_at',  $now = time())
 			 ->where('id=?', $id)
