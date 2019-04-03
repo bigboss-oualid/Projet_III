@@ -14,7 +14,7 @@ if (! function_exists('pre')) {
 	function pre($var, $stop = 1): void
 	{
 		echo '<pre>';
-	//var_dump($var);
+		var_dump($var);
 		print_r($var);
 		echo '</pre>';
 
@@ -108,7 +108,7 @@ if (! function_exists('read_more')) {
 
         $cutedContent = implode(' ', array_slice($words_in_string, 0, $words_number));
 
-        return $cutedContent;
+        return $cutedContent . '...';
 
     }
 }

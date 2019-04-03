@@ -157,8 +157,11 @@ class Validation
 	/**
 	 * Determine if the phone number is correct
 	 *
-	 * @param mixed $phone
-	 *
+	 * @param string $inputName
+	 * @param int $minLen
+	 * @param int $maxLen
+	 * @param string $customErrorMessage
+	 * 
 	 * @return $this
 	 */
 	 function validatePhoneNumber(string $inputName, int $minLen = null, int $maxLen = null, string $customErrorMessage = null)
@@ -177,6 +180,7 @@ class Validation
 		}
          // Remove "-" from number
          $phoneToCheck = str_replace("-", "", $filteredPhoneNumber);
+         
          // Check the lenght of number
          if (strlen($phoneToCheck) < $minLen || strlen($phoneToCheck) >= $maxLen) {
             $message .= 'Le numero de téléphone doit avoir entre ' . $minLen .' et ' . $maxLen . 'numéros';

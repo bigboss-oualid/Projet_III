@@ -33,11 +33,11 @@
                         <span class="date"><?= date('d/m/Y à H:i', $episode->created); ?></span>
                     </div>
                     <div class="clearfix"></div>
-                    <a href="#" class="image-box">
+                    <a href="#" class="episode-image">
                         <img class="img-responsive img-rounded thumbnail" src="<?= assets('uploads/images/episodes/' . $episode->image); ?>" alt="<?= $episode->title; ?>" />
                     </a>
                     <p class="details">
-                        <div class="episodedetails">
+                        <div class="text-responsive episodedetails">
                         <?= htmlspecialchars_decode($episode->details); ?>
                         </div>
                     </p>
@@ -47,14 +47,14 @@
                         <div class="pull-left col-sm-2">
                             <a href="<?= urlHtml('/episode/' . seo($previousEpisode->title) . '/' . $previousEpisode->id); ?>" class="btn btn-default">
                             <span class="fa fa-angle-double-left"></span>
-                            L'épisode précédente
+                            <span class="hidden-xs">L'épisode précédente</span>
                           </a>
                         </div>                        
                         <?php endif ?>
                         <?php if (isset($nextEpisode) && $nextEpisode): ?>
                         <div class="pull-right col-sm-2">
                             <a href="<?= urlHtml('/episode/' . seo($nextEpisode->title) . '/' . $nextEpisode->id); ?>" class="btn btn-default">
-                            L'épisode suivante
+                            <span class="hidden-xs">L'épisode suivante</span>
                             <span class="fa fa-angle-double-right"></span>
                           </a>
                         </div>                        
@@ -66,7 +66,7 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-lg-6 col-lg-offset-3 text-center">
-                                <h2 class="text-center">
+                                <h2 class="text-center text-responsive">
                                     <span class="ion-minus fa fa-minus"> </span> Épisodes similaires <span class="fa fa-minus"> </span>
                                 </h2>
                                 <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis  dis parturient montes, nascetur ridiculus </p><br>
@@ -76,30 +76,34 @@
                             <div id="slider" class="carousel slide" data-ride="carousel">
                                 <ol class="carousel-indicators">
                                     <li data-target="#slider" data-slide-to="0" class="active"></li>
-                                    <li data-target="#slider" data-slide-to="1"></li>
+                                    <?php $number = 0; foreach ($related_episodes as $related_episode): ?>
+                                    <?php $number++; endforeach ?>
+                                    <?php $slider = 1;$i=3; while($i < $number) { ?>
+                                    <li data-target="#slider" data-slide-to="<?= $slider;?>"></li>
+                                    <?php $slider++;  $i=$i+3;} ?>
                                 </ol>
                                 <!-- Carousel items -->
                                 <div class="carousel-inner">
-                                    <?php $caresoul = 1; ?>
+                                    <?php $caresoul = 0; ?>
                                     <div class="item active">
                                         <div class="row">
                                         <?php foreach ($related_episodes as $related_episode): ?>
-                                            <?php if ($caresoul == 4): ?>
+                                            <?php if ($caresoul == 3): ?>
                                     <div class="item">
                                         <div class="row">
                                             <?php $caresoul = 0; endif ?>
                                             <div class="col-sm-4 col-xs-6">
                                                 <div class="card text-center">
-                                                    <img class="card-img-top" src="<?= assets('uploads/images/episodes/' . $episode->image); ?>" alt="" width="100%">
+                                                    <img class="card-img-top" src="<?= assets('uploads/images/episodes/' . $related_episode->image); ?>" alt="" width="100%">
                                                     <div class="card-block">
                                                         <h4 class="card-title"> <?= $related_episode->title?></h4>
-                                                        <p class="card-text"><?= html_entity_decode(read_more($episode->details, 20)) ;?></p>
-                                                        <a class="btn btn-default" href="<?= urlHtml('/episode/' . seo($episode->title) . '/' . $episode->id); ?>">lire la suite</a>
+                                                        <p class="card-text"><?= html_entity_decode(read_more($related_episode->details, 20)) ;?></p>
+                                                        <a class="btn btn-default" href="<?= urlHtml('/episode/' . seo($related_episode->title) . '/' . $related_episode->id); ?>">lire la suite</a>
                                                     </div>
                                                 </div>
                                             </div>
                                             <?php $caresoul++;  ?>
-                                            <?php if ($caresoul == 4): ?>
+                                            <?php if ($caresoul == 3): ?>
                                         </div>
                                     </div>
                                             <?php endif ?>
@@ -125,17 +129,22 @@
                 <div class="container">
                     <div class="comment ">
                         <div class="author-image">
-                            <img src="<?= ($comment->userID)? assets('uploads/images/episodes/' . $comment->userImage) : assets('uploads/images/users/profile-42914_960_720.png'); ?> " alt="" />
+                            <img src="<?= ($comment->userID)? assets('uploads/images/users/' . $comment->userImage) : assets('uploads/images/users/profile-42914_960_720.png'); ?> " alt="Visiteur" />
                         </div>
                         <div class="comment-container">
                             <div class="author-name">
                                 <?= ($comment->userID)? $comment->first_name . ' ' . $comment->last_name : 'Visiteur ' . $visitor++ ; ?>
                             </div>
                             <div class="comment-date">
-                                <?= date('d-m-Y H:i', $comment->created); ?><acronym title="Nombre de signalement"> <span class="fa fa-flag icon-flag pull-right"> <?= ($comment->reported>0)? $comment->reported :'' ?></span></acronym>
+                                <?= date('d-m-Y H:i', $comment->created); ?>
+                                <?php if ($comment->reported>0): ?>
+                                <acronym title="Nombre de signalement">
+                                    <span class="fa fa-flag icon-flag pull-right"> <?= $comment->reported ?></span>
+                                </acronym>
+                                <?php endif ?>
                             </div>
                             <div class="comment-text">
-                                <?= $comment->comment; ?>
+                                <?= htmlspecialchars_decode($comment->comment); ?>
                             </div>
                         </div>
                         <div class="pull-right">

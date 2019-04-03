@@ -78,7 +78,7 @@
                     <?php if (isset($popular_episodes)): ?>
                         <?php foreach ($popular_episodes as $popular_episode): ?>
                         <a href="<?= urlHtml('/episode/' . seo($popular_episode->title) . '/' . $popular_episode->id); ?>">
-                            <?= ucfirst($popular_episode->chapter). ' / ' .ucfirst($popular_episode->title); ?>  <span class="pull-right icon-views"><?= $popular_episode->views; ?> <i class="icon-views glyphicon glyphicon-eye-open"></i></span>
+                            <?= '<small>'.$popular_episode->chapter . '</small> / ' . read_more($popular_episode->title, 5); ?>  <span class="pull-right icon-views"><?= $popular_episode->views; ?> <i class="icon-views glyphicon glyphicon-eye-open"></i></span>
                         </a> 
 
                         <?php endforeach ?>

@@ -32,18 +32,18 @@
         </a>
     </div>
 
-    <div class="post-box-footer">
-        <a class="user">
-            Par:
-            <span class="main"><?= $episode->first_name . ' ' . $episode->last_name; ?></span>
+    <div class="row post-box-footer">
+        <a class="col-xs-4 user">
+            <div><b>Par:</b></div>
+            <span class="main"><?= $episode->last_name; ?></span>
         </a>
-        <a href="<?= urlHtml('chapter/' . seo($episode->chapter) . '/' . $episode->chapter_id); ?>" class="category">
-            Dans:
+        <a href="<?= urlHtml('chapter/' . seo($episode->chapter) . '/' . $episode->chapter_id); ?>" class="col-xs-4 category">
+            <div><b>Dans:</b></div>
             <span class="main"><?= $episode->chapter; ?></span>
         </a>
-        <a href="<?= urlHtml('/episode/' . seo($episode->title) . '/' . $episode->id); ?>#comment-form" class="comments">
+        <a href="<?= urlHtml('/episode/' . seo($episode->title) . '/' . $episode->id); ?>#comment-form" class="col-xs-4 comments">
             <span class="main"><?= $episode->total_comments; ?></span>
-            Commentaires
+            <i class="main fa fa-comments-o"></i>
         </a>
     </div>
 </div>

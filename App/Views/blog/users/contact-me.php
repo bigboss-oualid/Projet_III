@@ -4,13 +4,14 @@
     <div class="centered-content clearheight">
         <p id="titrepage" class="text-center"><span class="ion-minus fa fa-minus"> </span>Contactez moi ! <span class="fa fa-minus"> </span></p>
       <hr id="hrapropos">
+
         <!-- Form -->
         <form action="<?= urlHtml('/contact-me/submit'); ?>" class="form">
           <div id="form-results"></div>
           <div class="form-group">
               <label for="name" class="col-sm-3 col-xs-12">Prénom</label>
               <div class="col-sm-9 col-xs-12">
-                  <input class="form-control <?= (isset($name))? ' form-control-plaintext" readonly value="'.$name.'" ': ' input placeholder" placeholder="Prénom, Nom';  ?>" type="text" name="name" id="name"   />
+                  <input class="form-control <?= (isset($name))? ' form-control-plaintext" readonly value="'.$name.'" ': ' input placeholder" placeholder="Prénom, Nom';  ?>" type="text" name="name" id="name"/>
               </div>
           </div>
 
@@ -39,7 +40,7 @@
           <div class="form-group">
             <label for="message" class="col-sm-3 col-xs-12" > Message:</label>
               <div class="col-sm-9 col-xs-12">
-                <textarea class="form-control" type="textarea" name="message" id="message" placeholder="Entrer votre message" maxlength="6000" rows="15"></textarea>
+                <textarea class="col-xs-12 form-control tinyeditor" type="textarea" name="message" id="message" maxlength="6000" rows="15"></textarea>
               </div>
           </div>
 

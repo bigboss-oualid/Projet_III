@@ -42,7 +42,7 @@ class SidebarController extends Controller
 		//Get only the important links
 		$links = [
 					'contacts'    =>'/admin/contacts',
-				 	'comments'    =>'/admin/episodes/comments',
+				 	'comments'    =>'/admin/comments',
 					'episodes'    =>'/admin/episodes/add',
 					'chapters'    =>'/admin/chapters',
 					'settings'    =>'/admin/settings',

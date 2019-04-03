@@ -56,6 +56,12 @@ $(function () {
             }
         });
 
+        if (form.find('#message').length) {
+            // if there is an element in the form has an id 'details'
+            // then add the value for it wich be gotten from tinymce to form
+            form.find('#message').val(tinymce.get("message").getContent());
+        }
+
         url = form.attr('action');
 
         data = new FormData(form[0]);

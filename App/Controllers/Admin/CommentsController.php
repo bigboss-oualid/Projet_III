@@ -123,7 +123,7 @@ class CommentsController extends Controller
 	public function edit(int $id): string
 	{
 
-		$commentsModel = $this->load->model('comments');
+		$commentsModel = $this->load->model('Comments');
 
 		if(! $commentsModel->exists($id)) {
 			return $this->url->redirectTo('/404');

@@ -42,10 +42,6 @@ $(document).on('click', '.submit-btn', function(e) {
 
 	var form = btn.parents('.form');
 
-	if (form.find('#details').length) {
-		form.find('#details').val(CKEDITOR.instances.details.getData());
-	}
-
 	var url = form.attr('action');
 
 	var data = new FormData(form[0]);

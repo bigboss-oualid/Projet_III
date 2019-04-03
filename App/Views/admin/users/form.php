@@ -74,7 +74,7 @@
             </div>
             <?php if ($image): ?>
               <div class=" form-group col-sm-6 ">
-                <img src="<?= $image; ?>" style="width:50px; height: 50px;"/>
+                <img src="<?=  $image; ?>" style="width:50px; height: 50px;"/>
               </div>
             <?php endif  ?>
             <div class="clearfix"></div>

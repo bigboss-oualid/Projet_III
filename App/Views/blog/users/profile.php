@@ -70,9 +70,11 @@
                  </div>
             </div>
         </form>
-        <div class="jumbotron col-sm-offset-3 col-sm-9">
-            <h3 id="supprimer-compte" class="text-center">Supprimer votre compte</h3>
-            <span class="col-xs-12">Vous avez été utilisateur sur Blog|Jean-Forteroche. je dois  conserver certaines informations pour des raisons réglementaires. Si vous souhaitez réellement supprimer votre compte, merci de me <a href="<?= urlHtml('/contact-me'); ?>">contacter</a></span>
+        <div class="container col-sm-offset-3 col-sm-9">
+        <div class="jumbotron container col-sm-12">
+            <h3 id="supprimer-compte" class="text-center"><b>Supprimer votre compte</b></h3>
+            <span class="col-xs-12">Vous avez un compte sur Blog|Jean-Forteroche. et vous souhaitez réellement le supprimer, merci de me <a href="<?= urlHtml('/contact-me'); ?>">contacter</a></span>
+        </div>
         </div>
         <!--/ Form -->
     </div>

@@ -45,7 +45,7 @@
                     <thead>
                     <tbody>
                       <?php foreach ($contacts as $contact): ?>
-                      <tr class="row <?= ($contact->reply)? null : 'warning'; ?>">
+                      <tr class="row <?= ($contact->reply)? null : 'success'; ?>">
                         <td class="col-sm-1 col-xs-1"><?= $contact->id; ?></td>
                         <td class="col-sm-1 col-xs-2">
                           <strong><?= $contact->name ?></strong>

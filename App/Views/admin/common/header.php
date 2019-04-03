@@ -6,7 +6,7 @@
   <title><?=  $title; ?></title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-  </style>-->
+  </style>
   <!--Pagination-->
   <link rel="stylesheet" href="<?= assets('admin/plugins/datatables/1.10.2/css/jquery.dataTables.min.css'); ?>">
   <!-- Bootstrap 3.3.6 -->

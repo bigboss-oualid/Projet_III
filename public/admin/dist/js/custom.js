@@ -1,9 +1,12 @@
 $(function () {
-CKEDITOR.replaceAll( 'details' );
 
-    //Pagination
+    //Pagination for list
     $(document).ready(function(){
-        $('.pag').dataTable();
+        $('.pag').dataTable({
+            responsive: true,
+            /*order by using the first column*/
+            "order": [[ 0, "desc" ]]
+        });
     });
 
     // Steps to set the active sidebar link
@@ -72,8 +75,8 @@ CKEDITOR.replaceAll( 'details' );
 
         if (form.find('#details').length) {
             // if there is an element in the form has an id 'details'
-            // then add the value for it to be gotten from ckeditor
-            form.find('#details').val(CKEDITOR.instances.details.getData());
+            // then add the value for it wich be gotten from tinymce to form
+            form.find('#details').val(tinymce.get("details").getContent());
         }
 
         url = form.attr('action');
@@ -144,6 +147,6 @@ CKEDITOR.replaceAll( 'details' );
 
  $('.datepicker').datepicker();
 
-  $(function () {
-      $('[data-toggle="tooltip"]').tooltip()
-    });
+$(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+});

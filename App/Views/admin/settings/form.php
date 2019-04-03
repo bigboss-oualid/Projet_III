@@ -62,11 +62,9 @@
                           <label for="episodes_in_home">Nombre des épisodes afficher à la page d'acceuil</label>
                           <select class="form-control" id="episodes_in_home" name="episodes_in_home">
                             <?php for ($i=1; $i < $total_episodes ; $i++):?> 
-                              <option value="<?= $i;?>" <?= $episodes_in_home == $i ? 'selected': false; ?>><?= $i;?></option>
+                            <option value="<?= $i;?>" <?= $episodes_in_home == $i ? 'selected': false; ?>><?= $i;?></option>
                             <?php endfor ?>
                             <option value="<?= $total_episodes?>" <?= $episodes_in_home == $total_episodes ? 'selected': false; ?>>Toutes</option>
-                              
-                              
                           </select>
                         </div>
 
@@ -79,7 +77,7 @@
                         </div>
                         <div class="form-group col-sm-12">
                           <label for="site_close_msg">Message de fermeture du site</label>
-                          <textarea name="site_close_msg" class="details" id="site_close_msg" cols="30" rows="10"><?= $site_close_msg;?></textarea>
+                          <textarea name="site_close_msg"  id="site_close_msg" class="tinyeditor"><?= $site_close_msg;?></textarea>
                         </div>
                           <button class="btn btn-info">Sauvgarder</button>
                     </form>

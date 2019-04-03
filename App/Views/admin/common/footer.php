@@ -63,11 +63,11 @@
               <label  for="image">Image</label>
               <input type="file" name="image" />
             </div>
-            <?php if ($user->image) { ?>
+            <?php if ($user->image) : ?>
               <div class=" form-group col-sm-6 ">
                 <img src="<?= assets('uploads/images/users/' . $user->image); ?>" style="width:50px; height: 50px;"/>
               </div>
-            <?php }  ?>
+            <?php endif  ?>
             <div class="clearfix"></div>
             <br/>
             <button class=" btn btn-success submit-btn">Modifier</button>
@@ -97,7 +97,6 @@
 <!-- AdminLTE App -->
 <script src="<?= assets('admin/dist/js/app.min.js'); ?>"></script>
 <!--CKEditor WYSIWYG -->
-<script src="<?php echo assets('admin/plugins/ckeditor/ckeditor.js'); ?>"></script>
 
 <!--Pagination -->
 <script type="text/javascript" src=" <?= assets('admin/plugins/datatables/1.10.2/js/jquery.dataTables.min.js')?>"></script>
@@ -105,5 +104,9 @@
 <script type="text/javascript" src=" <?= assets('admin/plugins/datatables/1.10.2/bootstrap/bootstrap.min.js')?>"></script>
 <!-- Custom JS -->
 <script src="<?= assets('admin/dist/js/custom.js'); ?>"></script>
+<!--TinyMCE-->
+<script  type="text/javascript" src="<?= assets('plugins/tinymce_5.0.3/tinymce.min.js'); ?>"></script>
+<script  type="text/javascript" src="<?= assets('plugins/tinymce_5.0.3/init-tinymce.js'); ?>"></script>
+
 
 </html>

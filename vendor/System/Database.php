@@ -551,7 +551,7 @@ class Database
 	{
 		$sql = array_shift($bindings);
 
-		//if i send bindings as one array ex:query('SELECT * FROM posts WHERE id > ? AND id < ?', [1,5]); 
+		//if i send bindings as one array ex:query('SELECT * FROM episodes WHERE id > ? AND id < ?', [1,5]); 
 		if (count($bindings) == 1 AND is_array($bindings[0])) {
 			$bindings = $bindings[0];
 		}
