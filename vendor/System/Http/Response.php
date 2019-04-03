@@ -34,14 +34,15 @@ class Response
 	 */
 	public function __construct(Application $app)
 	{
-		
 		$this->app = $app;
 	}
 
 	/**
 	 * Set the response output content
 	 * 
-	 * @param string $content 
+	 * @param string $content
+	 *
+	 * @return void
 	 */
 	public function setOutput(string $content): void
 	{
@@ -52,7 +53,9 @@ class Response
 	 * Add new header that will be sent to the browser
 	 * 
 	 * @param  $header
-	 * @param  $value 
+	 * @param  $value
+	 *
+	 * @return void
 	 */
 	public function setHeader($header, $value): void
 	{

@@ -1,30 +1,49 @@
+# Projet N°3 - Blog d'un écrivain
 
-ToDo:
+#Architecture 
++ **App** - Gestion du MVC
+    + **Controllers** - Classes des controlleurs
+    + **Models** - Classes des modèles
+    + **Views** - Fichier des views
+    + **index.php** - Routage
++ **public** - Dossier pour plugins et fichiers(css,js et jpeg)
++ **vendor** - Core de l'application
++ **.htaccess** - Fichiers de sécurite
++ **config.php** - Fichier de configuration
++ **index.php** - Fichiers de lancement de l'application
 
-Finir le core de l'application:
-	+Création des classes suivantes
-		-vendor\System\Cokkie.php
-			Gestion des Cookies.
-		-vendor\System\Html.php
-			Gestion des metadata des pages html.
-		-vendor\System\Url.php
-			générer des liens complets.
+## Installation
+1. Cloner ou téléchargez le projet
+    git@github.com:bigboss-oualid/Projet_III.git
+2. Installer Wamp sur votre ordinnateur 
+3. Aller dans le dossier WWW
+4. Créer un répertoire projet3
+5. Copier tous les dossier dans du répertoire télechargé dans le dossier crée projet3 
+6. Créer la base de données blog_ecrivain
+    1. Se connecter à MySql
+    2. Puis importer le fichier DB/blog_ecrivain.sql
+    4. si nécessaire  modifer l'accès à la base de données dans le fichier /config.php
+    3. Sortir de MySql
+7. Ouvrir la console et se placer dans le dossier projet3
 
-		
+## Fonctionnalitées
 
-Projet:CRÉER UN BLOG POUR UN ÉCRIVAIN
+### Blog:
+- Visualisation des episodes du livre.
+- Contacter jean forteroche.
+- Consulter la biographie de jean forteroche
+- Ajout d'un nouveau commentaire ou signaler un commentaire éxistant 
+- Lancer une Recherche dans les épisodes, chapitre ou Contenu
 
-Jean Forteroche, acteur et écrivain. Il travaille actuellement sur son prochain roman, "Billet simple pour l'Alaska". Il souhaite innover et le publier par épisode en ligne sur son propre site.
-Seul problème : Jean n'aime pas WordPress et souhaite avoir son propre outil de blog, offrant des fonctionnalités plus simples. Vous allez donc devoir développer un moteur de blog en PHP et MySQL.
-
-Le livre de Jean Forteroche reste à écrire... mais il sera publié en ligne !
-
-L'application de blog simple en PHP et avec une base de données MySQL. Elle doit fournir une interface frontend (lecture des billets) et une interface backend (administration des billets pour l'écriture). On doit y retrouver tous les éléments d'un CRUD :
-Create : création de billets
-Read : lecture de billets
-Update : mise à jour de billets
-Delete : suppression de billets
-Chaque billet doit permettre l'ajout de commentaires, qui pourront être modérés dans l'interface d'administration au besoin.
-Les lecteurs doivent pouvoir "signaler" les commentaires pour que ceux-ci remontent plus facilement dans l'interface d'administration pour être modérés.
-L'interface d'administration sera protégée par mot de passe. La rédaction de billets se fera dans une interface WYSIWYG basée sur TinyMCE, pour que Jean n'ait pas besoin de rédiger son histoire en HTML (on comprend qu'il n'ait pas très envie !).
-Vous développerez en PHP sans utiliser de framework pour vous familiariser avec les concepts de base de la programmation. Le code sera construit sur une architecture MVC. Vous développerez autant que possible en orienté objet (au minimum, le modèle doit être construit sous forme d'objet). 
+### Administration:
+- Boite aux lettres (voir, répondre ou supprimer emails)
+- Gestion des chapitres
+- Gestion des épisodes (TinyMce)
+- Gestion des commentaires        
+- Gestion des utilisateurs
+- Gestion des groupes des utilisateurs
+- Paramétrage du site
+- Gestion du profil d'utilisateur connecté
+    
+ ## Démo
+ Allez sur le site: [Jean ForteRoche](https://projet3.munich-city.fr/ "

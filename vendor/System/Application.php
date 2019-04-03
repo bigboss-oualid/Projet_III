@@ -2,17 +2,19 @@
 
 namespace System;
 
+use Closure;
+
 class Application
 {
 
 	/**
-	 * Save Object or mixed data wich will shared & be used in the Application 
+	 * Save Object or mixed data
 	 * 
 	 * @var array
 	 */
 	private $container = [];
 
-		/**
+	/**
 	 * Application Object
 	 * 
 	 * @var \System\Application
@@ -24,14 +26,13 @@ class Application
 	 * 
 	 * @param \System\File $file 
 	 */
-	public function __construct(File $file)
+	private function __construct(File $file)
 	{
 		$this->share('file', $file);
 
 		$this->registerClasses();
-		$this->loadHelpers();
 
-		pre($this->file);
+		$this->loadHelpers();
 	}
 
 	/**
@@ -41,7 +42,7 @@ class Application
 	 * 
 	 * @return \System\Application
 	 */
-	public static function getInstance(File $file = null): \System\Application
+	public static function getInstance(File $file = null)
 	{
 		if (is_null(static::$instance)) {
 			static::$instance = new static($file);
@@ -49,15 +50,31 @@ class Application
 		return static::$instance;
 	}
 
+
 	/**
-	 * Run the Application leads to a session start
+	 * run the Application leads to a session start
 	 * 
 	 * @return void
 	 */
 	public function run(): void
 	{
 		$this->session->start();
+
 		$this->request->prepareUrl();
+
+		$this->file->call('App/index.php');
+
+		list($controller, $method, $arguments) = $this->route->getProperRoute();
+
+		if($this->route->hasCallsFirst()){
+			$this->route->callFirstCalls();
+		}
+
+		$output = (string) $this->load->action($controller, $method, $arguments);
+
+		$this->response->setOutput($output);
+
+		$this->response->send();
 	}
 
 	/**
@@ -71,34 +88,35 @@ class Application
 	}
 
 	/**
-	 *Load Class through autoloading
+	 * Load Class through autoloading
 	 * 
 	 * @param  string  $class 
+	 * 
 	 * @return void
 	 */
 	public function load(string $class): void
 	{
 		//get the class from App folder 
 		if (strpos($class, 'App') === 0) {
-			$file = $this->file->to($class . '.php');
+			$file = $class . '.php';
 		}else{
 			// get the class from vendor folder
-			$file = $this->file->toVendor($class . '.php');
+			$file = 'vendor/' . $class . '.php';
 		}
 
 		if ($this->file->exists($file)) {
-				$this->file->require($file);
+				$this->file->call($file);
 			}
 	}
 
 	/**
-	 * Load Helpers some functions that will be helpfel for the application
+	 * Load Helpers File
 	 * 
 	 * @return void
 	 */
 	private function loadHelpers(): void
 	{
-		$this->file->require($this->file->toVendor('helpers.php'));
+		$this->file->call('vendor/helpers.php');
 	}
 
 	/**
@@ -120,6 +138,7 @@ class Application
 			'db'          => 'System\\Database',
 			'url'         => 'System\\Url',
 			'validator'   => 'System\\Validation',
+			'pagination'  => 'System\\Pagination',
 		];
 	}
 
@@ -155,20 +174,24 @@ class Application
 	/**
 	 * Share the given key|value (files) through the Application
 	 * 
-	 * @param  string $key 
-	 * @param  mixed $value 
+	 * @param  string $key
+	 * @param  mixed $value
 	 * 
 	 * @return mixed 
 	 */
 	public function share(string $key, $value)
-	{
+	{	
+		if($value instanceof Closure) {
+			$value = call_user_func($value, $this);
+		}
 		$this->container[$key] = $value;
 	}
 
 	/**
 	 * Determine if the given key is shared through Application means is it saved in the $container[$key] ?
 	 * 
-	 * @param  string $key 
+	 * @param  string $key
+	 * 
 	 * @return bool 
 	 */
 	public function isSharing(string $key): bool
@@ -180,9 +203,10 @@ class Application
 	 * Get the shared value of the property
 	 * 
 	 * @param  string $key
+	 * 
 	 * @return mixed      
 	 */
-	private function get(string $key)
+	public function get(string $key)
 	{
 		if(! $this->isSharing($key)) {
 			if ($this->isCoreAlias($key)) {
@@ -198,6 +222,7 @@ class Application
 	 * Get shared value dynamically when the property doesn't exist in this file 
 	 * 
 	 * @param  string $key
+	 * 
 	 * @return mixed
 	 */
 	public function __get(string $key)

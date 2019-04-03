@@ -72,6 +72,7 @@ class View implements ViewInterface
 	 * Determine if the view path exists in the view directory
 	 *
 	 * @param string $view
+	 * 
 	 * @return boolean
 	 */
 	private function viewFileExists(string $viewPath): bool

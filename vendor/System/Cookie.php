@@ -12,6 +12,29 @@ class Cookie
 	private $app;
 
 	/**
+     * Cookies Path
+     *
+     * @var string
+     */
+    private $path = '/';
+
+     /**
+     * Constructor
+     *
+     * @param \System\Application $app
+     */
+    public function __construct(Application $app)
+    {
+        $this->app = $app;
+
+        /**
+         *Get the path through the variable SCRIPT_NAME from $_SERVER, 
+         *Remove the file 'index.php' from path to get only the directory of the script name
+         */
+        $this->path = dirname($this->app->request->server('SCRIPT_NAME')) ?: '/';
+    }
+
+	/**
 	 * Set new value to cookie
 	 * 
 	 * @param string $key
@@ -22,9 +45,12 @@ class Cookie
 	 */
 	public function set(string $key, $value, int $hours = 2160): void
 	{
-		//change the sixth parameter to true if you have SSL
-		setcookie($key, $value, time() + ($hours * 3600), '', '', false, true);
-	}
+        //Romove the key from cookies if $hours = -1
+        $expireTime = $hours == -1 ? -1 : time() + $hours * 3600;
+
+        //change the sixth parameter to true if SSL will be used
+        setcookie($key, $value, $expireTime, $this->path, '', false, true);
+    }
 
 	/**
 	 *  Get value from Cookies Cookie by the given key
@@ -36,7 +62,7 @@ class Cookie
 	 */
 	public function get(string $key, $default = null)
 	{
-		array_get($_COOKIE, $key, $default);
+		return array_get($_COOKIE, $key, $default);
 	}
 
 	/**
@@ -60,7 +86,7 @@ class Cookie
 	 */
 	public function remove(string $key): void
 	{
-		setcookie($key, null, -1);
+		$this->set($key, null, -1);
 
 		unset($_COOKIE[$key]);
 	}
@@ -82,7 +108,7 @@ class Cookie
 	 */
 	public function destroy(): void
 	{
-		foreach ($array_keys($this-all()) as $key) {
+		foreach (array_keys($this->all()) as $key) {
 			$this->remove($key);
 		}
 

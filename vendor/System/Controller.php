@@ -10,6 +10,13 @@ abstract class Controller
 	 * @var \System\Application
 	 */
 	protected $app;
+
+	/**
+	 * Errors container
+	 *
+	 * @var array
+	 */
+	protected $errors = [];
 	
 	/**
 	 * Constructor
@@ -22,14 +29,26 @@ abstract class Controller
 	}
 
 	/**
-	 * Call shared Application objects dynamically
+	 * Encode the given value to Json
 	 *
-	 * ´@param string  $key
+	 * @param mixed $data
+	 *
+	 * @return string
+	 */
+	public function json($data): string
+	{
+		return json_encode($data);
+	}
+
+	/**
+	 * Call shared Application Objects dynamically
+	 *
+	 * @param string  $key
 	 * @return mixed
 	 */
 	public function __get(string $key)
 	{
 		return $this->app->get($key);
 	}
-
+	
 } 

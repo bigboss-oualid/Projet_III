@@ -44,11 +44,11 @@ class Loader
 	 * 
 	 * @return mixed
 	 */
-	public function action(string $controller, string $method, array $arguments)
+	public function action(string $controller, string $method, array $arguments = [])
 	{
 		$object = $this->controller($controller);
 
-		return call_user_func([$object, $method], $arguments);
+		return call_user_func_array([$object, $method], $arguments);
 	}
 
 	/**
@@ -58,7 +58,7 @@ class Loader
 	 * 
 	 * @return object \System\Controller             
 	 */
-	public function controller(string $controller): \System\Controller
+	public function controller(string $controller)
 	{
 		$controller = $this->getControllerPath($controller);
 
@@ -104,7 +104,7 @@ class Loader
 	 * 
 	 * @return object \System\Controller 
 	 */
-	private function getController(string $controller): \System\Controller 
+	private function getController(string $controller)
 	{
 		return $this->controllers[$controller];
 	}
@@ -132,7 +132,7 @@ class Loader
 	 * 
 	 * @return object \System\model             
 	 */
-	public function model(string $model): \System\model
+	public function model(string $model)
 	{
 		$model = $this->getModelPath($model);
 
@@ -179,7 +179,7 @@ class Loader
 	 * 
 	 * @return object \System\model 
 	 */
-	private function getModel(string $model): \System\model
+	private function getModel(string $model)
 	{
 		return $this->models[$model];
 	}

@@ -19,11 +19,25 @@ class Route
 	private $routes = [];
 
 	/**
+	 * Current route
+	 *
+	 * @var array
+	 */
+	private $current = [];
+
+	/**
 	 * Not found Url
 	 * 
 	 * @var string
 	 */
 	private $notFound;
+
+	/**
+	 *Calls Container
+	 *
+	 * @var array
+	 */
+	private $calls = [];
 
 	/**
 	 * Constructor
@@ -36,11 +50,21 @@ class Route
 	}
 
 	/**
+	 * Get All routes
+	 *
+	 * @return array
+	 */
+	public function routes()
+	{
+		return $this->routes;
+	}
+
+	/**
 	 * Add new Route
 	 * 
 	 * @param  string  $url           
 	 * @param  string  $action        
-	 * @param  string  $requestMethod  POST or GET  
+	 * @param  string  $requestMethod  $_POST or $_GET  
 	 * 
 	 * @return void             
 	 */
@@ -59,7 +83,7 @@ class Route
 	/**
 	 * Generate a regex pattern for the given url
 	 * 
-	 * @param  string $url 
+	 * @param  string $url
 	 * 
 	 * @return string
 	 */
@@ -76,7 +100,7 @@ class Route
  	}
 
  	/**
-	 * Get the proper action
+	 * Get the proper action = the controller's method
 	 * 
 	 * @param  string $action
 	 * 
@@ -90,15 +114,52 @@ class Route
 	}
 
 	/**
-	 * Get url for NotFound page
+	 * Set not Found Url
 	 * 
-	 * @param  string $url 
+	 * @param  string $url
 	 * 
 	 * @return void
 	 */
 	public function notFound(string $url): void
 	{
 		$this->notFound = $url;
+	}
+
+	/**
+	 * Call the given callback before calling the main controller
+	 *
+	 * @var callable $callable
+	 * 
+	 * @return $this
+	 */
+	
+	public function callFirst(callable $callable)
+	{
+		$this->calls['first'][] = $callable;
+
+		return $this;
+	}
+
+	/**
+	 * Determine if there are any callbacks that will be called before calling the main controller
+	 *
+	 * @return boolean
+	 */
+	public function hasCallsFirst(): bool
+	{
+		return ! empty($this->calls['first']);
+	}
+
+	/**
+	 * Call All callbacks that will be called before calling the main controller
+	 *
+	 * @return bool
+	 */
+	public function callFirstCalls()
+	{
+		foreach ($this->calls['first'] as $callback) {
+			call_user_func($callback, $this->app);
+		}
 	}
 
 	/**
@@ -109,13 +170,27 @@ class Route
 	public function getProperRoute(): array
 	{
 		foreach ($this->routes as $route ) {
-			if ($this->isMatching($route['pattern'])) {
+			if ($this->isMatching($route['pattern']) AND $this->isMatchingRequestMethod($route['method'])) {
 				$arguments = $this->getArgumentsFrom($route['pattern']);
 				// controller@method
-				$gool= list($controller, $method) = explode('@', $route['action']);
+				list($controller, $method) = explode('@', $route['action']);
+
+				$this->current = $route;
+
 				return [$controller, $method, $arguments];
 			}
 		}
+
+		return $this->app->url->redirectTo($this->notFound);
+
+	}
+
+	/**
+	 * Get current route Url
+	 */
+	public function getCurrentRouteUrl()
+	{
+		return $this->current['url'];
 	}
 
 	/**
@@ -130,6 +205,17 @@ class Route
 		return preg_match($pattern, $this->app->request->url());
 	}
 
+	/**
+	 * Determine if the given current request method equals the given route method
+	 * 
+	 * @param  string  $routeMethod
+	 * 
+	 * @return boolean
+	 */
+	private function isMatchingRequestMethod(string $routeMethod): bool
+	{
+		return $routeMethod == $this->app->request->method();
+	}
 
 	/**
 	 * Get Arguments from the current request url based on the given pattern
@@ -138,7 +224,7 @@ class Route
 	 * 
 	 * @return array
 	 */
-	private function getArgumentsFrom(string $pattern): array
+	private function getArgumentsFrom(string $pattern)
 	{
 		preg_match($pattern, $this->app->request->url(), $matches);
 		array_shift($matches);
