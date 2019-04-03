@@ -13,7 +13,7 @@
 + **index.php** - Fichiers de lancement de l'application
 
 ## Installation
-1. Cloner ou téléchargez le  [projet](git@github.com:bigboss-oualid/Projet_III.git  "lien de téléchargement")
+1. Cloner ou téléchargez le  [projet](https://git@github.com:bigboss-oualid/Projet_III.git  "lien de téléchargement")
 2. Installer Wamp sur votre ordinnateur 
 3. Aller dans le dossier WWW
 4. Créer un répertoire projet3
