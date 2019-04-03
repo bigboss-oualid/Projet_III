@@ -13,8 +13,7 @@
 + **index.php** - Fichiers de lancement de l'application
 
 ## Installation
-1. Cloner ou téléchargez le projet
-    git@github.com:bigboss-oualid/Projet_III.git
+1. Cloner ou téléchargez le  [projet](git@github.com:bigboss-oualid/Projet_III.git  "lien de téléchargement")
 2. Installer Wamp sur votre ordinnateur 
 3. Aller dans le dossier WWW
 4. Créer un répertoire projet3
@@ -46,4 +45,4 @@
 - Gestion du profil d'utilisateur connecté
     
  ## Démo
- Allez sur le site: [Jean ForteRoche](https://projet3.munich-city.fr/ "
+ Allez sur le site: [Jean ForteRoche](https://projet3.munich-city.fr/  "Jean Forteroche Blog")
