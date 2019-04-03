@@ -24,7 +24,7 @@
             </div>
 
             <div class="form-group col-sm-6 ">
-              <label for="reported">Signalé</label>
+              <label for="reported">Contenu</label>
               <?php if($reported > 0): ?>
                 <select class="btn btn-danger form-control" id="reported" name="reported">
                   <option class="btn btn-success" value="0">Validé</option>
@@ -47,10 +47,3 @@
     </div>
   </div>
 </div>
-<script>
-  for(name in CKEDITOR.instances){
-    CKEDITOR.instances[name].destroy();
-  }
-  CKEDITOR.replaceAll('details');
-  
-</script>

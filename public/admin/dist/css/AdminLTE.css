@@ -34,17 +34,12 @@
 }
 .content-wrapper{
    height: 100%; /* Changed this height */
-   padding-bottom:60px;
+   padding-bottom:470px;
 }
 
 .wrapper {
    min-height:100%;
    position:relative;
-}
-.main-footer {
-   position:relative;
-   bottom:0;
-   height:50px;
 }
 .content-wrapper{
   padding-top:50px;
@@ -157,10 +152,14 @@ body {
 }
 .main-footer {
   background: #fff;
-  padding: 15px;
+  padding: 15px 15px 15px 15px;
   color: #444;
   border-top: 1px solid #d2d6de;
+  position:relative;
+  bottom:0;
+  height:40px;
 }
+
 /* Fixed layout */
 .fixed .main-header,
 .fixed .main-sidebar,

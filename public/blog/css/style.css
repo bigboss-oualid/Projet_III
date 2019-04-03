@@ -2,6 +2,10 @@
 
 /*episode similaire*/
 @import url(https://fonts.googleapis.com/css?family=Raleway:400,900,700,600,500,300,200,100,800);
+/*profile update*/
+.jumbotron {
+    background-color: rgba(241, 191, 92, .6);
+}
 
 .user-img {
     margin: auto;
@@ -17,7 +21,7 @@
 }
 #hrapropos{
     margin-top: -3px;
-    padding-bottom: 100px;
+    padding-bottom: 70px;
     margin-left: auto;
     margin-right: auto;
     max-width: 450px;
@@ -41,8 +45,7 @@
 }
 
 .episodedetails{
-    margin: 0px 30px 0px 30px;
-    font-size: 25px !important;
+    font-size: 25px;
     text-align: justify !important;
     text-justify: inter-word !important;
 }
@@ -56,6 +59,21 @@
     font-weight: bold;
     color: #01445E;
     font-size: 45px;
+}
+
+@media all and (max-device-width: 800px)
+{
+    #titrepage {
+        font-size: 16px;
+    }
+    .text-responsive
+    {
+        font-size: 15px;
+    }
+    .fa-comments-o {
+        font-size: 2em !important;
+        color: #F1BF5C;
+    }
 }
 
 .similaires{
@@ -143,9 +161,9 @@ h2 {
 }
 .input-group .intl-tel-input .form-control {
   border-top-left-radius: 4px;
-  border-top-right-radius: 0;
+  border-top-right-radius: 4px;
   border-bottom-left-radius: 4px;
-  border-bottom-right-radius: 0;
+  border-bottom-right-radius: 4px;
 }
 
 #phone-label{
@@ -367,9 +385,19 @@ header .user-image {
     width: 100%;
     margin: 10px 0;
 }
+.fa-comments-o{
+    font-size: 2vw;
+    color: #F1BF5C;
+}
 
 .post-box .image-box img {
     width: 100%;
+    box-shadow: 0px 0px 1px 0px #000;
+}
+
+.post-box .episode-image img {
+    width: 65%;
+    margin: 0 auto;
     box-shadow: 0px 0px 1px 0px #000;
 }
 
@@ -415,6 +443,12 @@ header .user-image {
     font-size: 40px;
     color: #01445E;
 }
+@media all and (max-device-width: 800px)
+{
+    .post-box .heading {
+        font-size: 20px;
+    }
+}
 .post-box .heading a {
     color: #01445E;
 }
@@ -433,6 +467,7 @@ header .user-image {
     color: #01445E;
     font-weight: bold;
     text-transform: uppercase;
+    text-align: center;
 }
 
 .post-box .read-more:hover {
@@ -447,10 +482,9 @@ header .user-image {
 }
 
 .post-box .post-box-footer a {
-    display: inline-block;
-    float: left;
-    width: 33%;
-    border: 1px solid #eee;
+    color: #F1BF5C;
+    border-right: 2px solid #eee;
+    border-top: 2px solid #eee;
     padding: 10px;
     color: #000;
     font-weight: 100;
@@ -463,7 +497,8 @@ header .user-image {
 }
 
 .post-box .post-box-footer a:hover .main {
-    font-weight: bold;;
+    font-weight: bold;
+    color: #01445E;
 }
 
 /** Post Box */
@@ -637,6 +672,24 @@ footer .social a {
     padding-right: 0;
 }
 
+@media all and (max-device-width: 780px)
+{
+    .form-group label, #phone-label {
+    text-align: left;
+    margin-top: 8px;
+    padding-right: 0;
+    }
+    .intl-tel-input {
+      display: table-cell;
+      padding-left: 15px;
+    }
+    .intl-tel-input .selected-flag {
+      z-index: 4;
+      padding-left: 20px;
+    }
+}
+
+
 .page .centered-content {
     width: 80%;
     margin: auto;
@@ -653,7 +706,7 @@ footer .social a {
 
 /* Login Page */
 #login-page {
-    margin: 50px auto;
+    margin: 250px auto;
     width: 50%;
 }
 

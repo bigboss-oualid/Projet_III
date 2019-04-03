@@ -127,7 +127,7 @@ $app->route->add('/admin/settings/save', 'Admin/Settings@save', 'POST');
 $app->route->add('/admin/contacts', 'Admin/Contacts');
 $app->route->add('/admin/contacts/reply/:id', 'Admin/Contacts@reply', 'POST');
 $app->route->add('/admin/contacts/send/:id', 'Admin/Contacts@send', 'POST');
-$app->route->add('/admin/contacts/disabled/:id', 'Admin/Contacts@disabled','POST');
+$app->route->add('/admin/contacts/disabled/:id', 'Admin/Contacts@disabled', 'POST');
 
 //Admin => Logout
 $app->route->add('/admin/logout', 'Admin/Logout');

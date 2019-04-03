@@ -43,7 +43,7 @@ abstract class Controller
 	/**
 	 * Call shared Application Objects dynamically
 	 *
-	 * ´@param string  $key
+	 * @param string  $key
 	 * @return mixed
 	 */
 	public function __get(string $key)

@@ -18,13 +18,13 @@
                   <th><span class="fa <?= ($user_id==0)? 'fa-user-secret' : 'fa-user '; ?>"></span>  Nom</th> <td><?= $name; ?></td>
               </tr>
               <tr>
-                  <th><span class="glyphicon glyphicon-envelope"> Mail</span></th><td><?= $email; ?></td>
+                  <th><span class="glyphicon glyphicon-envelope"> Mail</span></th><td><?= html_entity_decode($email); ?></td>
               </tr>
               <tr>
                   <th><span class="glyphicon glyphicon-phone-alt"> Télé</span></th><td><?= $phone; ?></td>
               </tr>
               <tr>
-                  <th><span class="glyphicon glyphicon-paperclip"> Sujet</span></th><td><?= $subject; ?></td>
+                  <th><span class="glyphicon glyphicon-paperclip"> Sujet</span></th><td><?= html_entity_decode($subject); ?></td>
               </tr>
               <tr>
                   <th><span class="glyphicon glyphicon-time"> Reçu</span></th><td><?= $created; ?></td>
@@ -39,7 +39,7 @@
             </div>
             <div class="jumbotron">
               <div class="container ">
-                <p><?= $details ?></p>   
+                <p><?= html_entity_decode($details); ?></p>   
               </div>
             </div>
           </div>
@@ -49,7 +49,7 @@
             <div class="panel-heading"> 
               <h3 class="panel-title text-center"><span class="fa fa-edit"></span>  <b>Répondre</h3>
             </div>
-            <textarea name="details" class="details" id="details" cols="30" rows="10"></textarea>
+            <textarea name="details" class="tinyeditor" id="details" cols="30" rows="10"></textarea>
           
 
             <div class="clearfix"></div>
@@ -57,7 +57,7 @@
           </div>
           <!-- /.Object -->
 
-          <button class=" btn btn-success submit-btn"><span class="glyphicon glyphicon-ok-sign"></span>Envoyer</button>
+          <button class="btn btn-success submit-btn"><span class="glyphicon glyphicon-ok-sign"></span> Envoyer</button>
 
         
         </form>
@@ -69,9 +69,4 @@
   </div>
 </div>
 
-<script>
-     for(name in CKEDITOR.instances){
-    CKEDITOR.instances[name].destroy();
-  }
-  CKEDITOR.replaceAll('details');
-</script>
+<script  type="text/javascript" src="<?= assets('plugins/tinymce_5.0.3/init-tinymce.js'); ?>"></script>

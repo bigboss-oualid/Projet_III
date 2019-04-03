@@ -43,7 +43,11 @@
     <script src="<?= assets('blog/js/phone/intlTelInput.min.js'); ?>"></script>
     <script src="<?= assets('blog/js/phone/intlTelInput-jquery.min.js'); ?>"></script>
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
-
+    <!--TinyMCE-->
+    <script  type="text/javascript" src="<?= assets('plugins/tinymce_5.0.3/tinymce.min.js'); ?>"></script>
+    <script  type="text/javascript" src="<?= assets('plugins/tinymce_5.0.3/init-tinymce.js'); ?>"></script>
+    
+    <!--Phone flags-->
     <script type="text/javascript">
         var input = document.querySelector("#phone");
         window.intlTelInput(input,({

@@ -11,7 +11,7 @@
 
             <div class="message-input form-group col-sm-12">
               <label for="details">Contenu du commentaire</label>
-              <textarea name="details" class="details" id="details" cols="30" rows="10"></textarea>
+              <textarea name="details" class="tinyeditor" id="details" cols="30" rows="10"></textarea>
             </div>
 
             <div class="form-group col-sm-12">
@@ -49,10 +49,6 @@
     </div>
   </div>
 </div>
-<script>
-  for(name in CKEDITOR.instances){
-    CKEDITOR.instances[name].destroy();
-  }
-  CKEDITOR.replaceAll('details');
-  
-</script>
+<!--TinyMCE-->
+<script  type="text/javascript" src="<?= assets('plugins/tinymce_5.0.3/tinymce.min.js'); ?>"></script>
+<script  type="text/javascript" src="<?= assets('plugins/tinymce_5.0.3/init-tinymce.js'); ?>"></script>

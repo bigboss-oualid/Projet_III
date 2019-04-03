@@ -16,7 +16,7 @@
 
             <div class="message-input form-group col-sm-12">
               <label for="details">Contenu de l'épisode</label>
-              <textarea name="details" class="details" id="details" cols="30" rows="10"><?= $details; ?></textarea>
+              <textarea name="details" id="details" class="tinyeditor"><?= $details; ?></textarea>
             </div>
 
             <div class="message-input form-group col-sm-12">
@@ -49,19 +49,17 @@
                 <?php } ?>
               </select>
             </div>
-
-            
             <div class="clearfix"></div>
 
             <div class="message-input form-group col-sm-6 ">
               <label  for="image">Image</label>
               <input type="file" name="image" />
             </div>
-            <?php if ($image) { ?>
+            <?php if ($image) : ?>
               <div class=" form-group col-sm-6 ">
-                <img src="<?= $image; ?>" style="width:50px; height: 50px;"/>
+                <img src="<?= assets('uploads/images/episodes/' . $image); ?>" style="width:50px; height: 50px;"/>
               </div>
-            <?php }  ?>
+            <?php endif  ?>
             <div class="clearfix"></div>
             <button class=" btn btn-success submit-btn"><?= $submit;  ?></button>
           </form>
@@ -72,10 +70,7 @@
     </div>
   </div>
 </div>
-<script>
-  for(name in CKEDITOR.instances){
-    CKEDITOR.instances[name].destroy();
-  }
-  CKEDITOR.replaceAll('details');
-  
-</script>
+ 
+<!--TinyMCE-->
+<script  type="text/javascript" src="<?= assets('plugins/tinymce_5.0.3/tinymce.min.js'); ?>"></script>
+<script  type="text/javascript" src="<?= assets('plugins/tinymce_5.0.3/init-tinymce.js'); ?>"></script>

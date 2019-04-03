@@ -72,7 +72,7 @@ class ContactsController extends Controller
 			$repliedUser = $userModel->get(array_get($contact, 'replied_by'));
 
 			$replied_by = $repliedUser->last_name;
-			$replied_at = date('d-m-Y',array_get($contact, 'replied_at'));
+			$replied_at = date('d-m-Y à H:i',array_get($contact, 'replied_at'));
 
 			$data['details']  = html_entity_decode($this->getDetails($message, $name, $reply,  $replied_by,  $replied_at));
 		} else {
@@ -87,8 +87,8 @@ class ContactsController extends Controller
 
 		$data['created'] = '';
 
-		if (! empty($contact['created'])) {
-			$data['created'] = date('d-m-Y', $contact['created']);
+		if (! empty(array_get($contact, 'created'))) {
+			$data['created'] = date('d/m/Y à H:i', array_get($contact, 'created'));
 		}
 
 		return $this->view->render('admin/contacts/form', $data);

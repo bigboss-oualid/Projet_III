@@ -46,7 +46,6 @@ class EpisodesController extends Controller
 			//No error in form validation
 			$message = $this->load->model('Episodes')->create();
 
-
 			$json['success'] = $message;
 
 			 $json['redirectTo'] = $this->url->link('/admin/episodes');
@@ -115,7 +114,7 @@ class EpisodesController extends Controller
 
 			$json['success'] = $message;
 
-			 $json['redirectTo'] = $this->url->link('/admin/episodes');
+			$json['redirectTo'] = $this->url->link('/admin/episodes');
 		} else {
 			//Errors in form validation
 			$json['errors'] = $this->validator->detachMessages();
@@ -152,7 +151,7 @@ class EpisodesController extends Controller
 		$episode = (array) $episode;
 
 		$data['title']       = array_get($episode, 'title');
-		$data['chapter_id'] = array_get($episode, 'chapter_id');
+		$data['chapter_id']  = array_get($episode, 'chapter_id');
 		$data['status']      = array_get($episode, 'status', 'Activé');
 		$data['details']     = array_get($episode, 'details');
 		$data['tags']        = array_get($episode, 'tags');
@@ -161,8 +160,8 @@ class EpisodesController extends Controller
 		$data['image'] = '';
 
 		if (! empty($episode['image'])) {
-			//default path to upload episode image
-			$data['image'] = $this->url->link('public/uploads/images/episodes' . $episode['image']);
+			
+			$data['image'] = $episode['image'];
 		}
 
 		$data['related_episodes'] = [];
@@ -191,8 +190,7 @@ class EpisodesController extends Controller
 	public function isValid(int $id = null): bool
 	{
 		$this->validator->required('title');
-		$this->validator->required('details');
-		$this->validator->required('tags');
+		$this->validator->required('details', 'Contenu de l\'episode est vide');
 
 		$this->validator->unique('title', ['episodes', 'title', 'id', $id ], 'le titre est déjà utilisé par une autre épisode ');
 

@@ -62,7 +62,7 @@
                         <td class="col-xs-1 col-sm-1 ">
                           <?php if ($episode->total_comments): ?>
                             <a class="btn btn-success" href="<?= urlHtml('admin/episodes/'. $episode->id . '/comments'); ?>">
-                              <span class="hidden-sm hidden-xs"><span class="label label-info"><?= $episode->total_comments ?></span></span>
+                              <span class="hidden-sm"><span class="label label-info"><?= $episode->total_comments ?></span></span>
                               <span class="fa fa-comments"></span>
                             </a>
                             <?php else: ?>

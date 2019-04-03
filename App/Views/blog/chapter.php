@@ -13,7 +13,7 @@
         <div id="category-page" >
             <?php foreach ($chapter->episodes AS $chunked_episodes) : ?>
                 <?php foreach ($chunked_episodes AS $episode) : $episode->chapter = $chapter->name; ?>
-                <div class="col-sm-6">
+                <div class="col-sm-3">
                     <?= $episode_box($episode);?>
                 </div>
                 <?php endforeach ?>
