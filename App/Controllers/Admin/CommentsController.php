@@ -68,36 +68,40 @@ class CommentsController extends Controller
 	/**
 	 * Delete comment or more &returned message
 	 *
-	 * @param mixed   $id
+	 * @param mixed   $key
 	 * @param int    $episodeId
 	 * 
 	 * @return string|json
 	 */
-	public function delete($id, int $episodeId = null): string
+	public function delete($key, int $episodeId = null): string
 	{
 		$commentsModel = $this->load->model('Comments');
 		$json = [];
 
-		if (is_numeric($id)) {
-			if(! $commentsModel->exists($id)) {
+		if (is_numeric($key)) {
+			if(! $commentsModel->exists($key)) {
 				return $this->url->redirectTo('/404');
 			}
 
-			$comment = $commentsModel->get($id);
+			$comment = $commentsModel->get($key);
 
-			$commentsModel->delete($id);
+			$commentsModel->delete($key);
 
-			$json['success'] = 'Le commentaire ID: <b>[' . $comment->id . ']</b> a été supprimé avec succès';
+			$json['success'] = 'Le commentaire ID: <b>[ ' . $key . ' ]</b> a été supprimé avec succès';
 
-		} elseif($id === 'reported') {
+		} elseif($key === 'reported') {
 
-			$commentsModel->delete($id, $episodeId);
-			$json['success'] = 'Tous les commentaires signalés ont été supprimé avec succès';	
+			$commentsModel->delete($key, $episodeId);
+			$json['success'] = 'Tous les commentaires signalés ont été supprimé avec succès';
+			//Redirect to the penultimate page
+			$json['redirectTo'] = $this->request->referer();	
 
-		} elseif($id === 'disabled') {
+		} elseif($key === 'disabled') {
 			
-			$commentsModel->delete($id, $episodeId);
-			$json['success'] = 'Tous les commentaires non validés ont été supprimé avec succès';			
+			$commentsModel->delete($key, $episodeId);
+			$json['success'] = 'Tous les commentaires non validés ont été supprimé avec succès';
+			//Redirect to the penultimate page
+			$json['redirectTo'] = $this->request->referer();			
 		}
 		
 		return $this->json($json);
@@ -168,7 +172,7 @@ class CommentsController extends Controller
 
 			$json['success'] = $message;
 
-			 $json['redirectTo'] = $this->url->link('/admin/episodes/comments');
+			$json['redirectTo'] = $this->url->link('/admin/episodes/comments');
 		} else {
 			//Errors in form validation
 			$json['errors'] = $this->validator->detachMessages();
@@ -219,17 +223,20 @@ class CommentsController extends Controller
 		$comment = (array) $comment;
 
 		$data['user_last_name']   = array_get($comment, 'last_name');
-		$data['user_first_name']  = array_get($comment, 'irst_name');
+		$data['user_first_name']  = array_get($comment, 'first_name');
 		$data['chapter'] 		  = array_get($comment, 'chapter');
 		$data['episode'] 		  = array_get($comment, 'episode');
 		$data['comment']     	  = array_get($comment, 'comment');
 		$data['status']      	  = array_get($comment, 'status', 'Activé');
 		$data['email']            = array_get($comment, 'email');
 		$data['created']          = array_get($comment, 'created');
-		$data['ip']          	  = array_get($comment, 'ip');
+		$data['usersIp']          = array_get($comment, 'ip');
 		$data['id']          	  = array_get($comment, 'id');
 
-		if ($reported = array_get($comment, 'reported') > 0) {
+		$reported = array_get($comment, 'reported');
+		if ($reported == 1) {
+			$data['reported']        = $reported . ' fois signalé';
+		}elseif ($reported > 1) {
 			$data['reported']        = $reported . ' fois signalés';
 		} else {
 			$data['reported']        = '';
@@ -247,7 +254,7 @@ class CommentsController extends Controller
 	 */
 	public function isValid(int $id = null): bool
 	{
-		$this->validator->required('details','vous pouvez pas crée un message sans contenu')->minLen('details', 5, 'Entrer au moin 5 caractère dans votre message');
+		$this->validator->required('details','vous ne pouvez pas crée un commentaire sans contenu')->minLen('details', 5, 'Entrer au moin 5 caractères');
 
 		return $this->validator->passes();
 	}

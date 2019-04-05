@@ -17,10 +17,17 @@
 
             <div class="form-group col-sm-6 ">
               <label for="status">Statut</label>
-              <select class="form-control" id="status" name="status">
-                  <option value="Activé">Approuvé</option>
-                  <option value="Désactivé" <?= $status == 'Désactivé' ? 'selected' : false; ?> >En attente</option>
-              </select>
+              <?php if($status != 'Désactivé'): ?>
+                <select class="btn btn-success form-control" id="status" name="status">
+                    <option class="btn btn-success" value="Activé">Approuvé</option>
+                    <option class="btn btn-warning" value="Désactivé" <?= $status == 'Désactivé' ? 'selected' : false; ?> >En attente</option>
+                </select>
+              <?php else: ?>
+                <select class="btn btn-warning form-control" id="status" name="status">
+                  <option class="btn btn-success" value="Activé">Approuvé</option>
+                  <option class="btn btn-warning" value="Désactivé" <?= $status == 'Désactivé' ? 'selected' : false; ?> >En attente</option>
+                </select>
+              <?php endif ?>
             </div>
 
             <div class="form-group col-sm-6 ">

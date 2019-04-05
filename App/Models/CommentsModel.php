@@ -174,7 +174,7 @@ class CommentsModel extends Model
 	 */
 	public function delete($key, int $episodeId = null): void
 	{		
-		if (is_int($key)) {
+		if (is_numeric($key)) {
 			$this->where('id = ?', $key)->delete($this->table);	
 		} elseif (is_string($key)) {
 			if ($episodeId) {

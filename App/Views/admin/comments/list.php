@@ -56,9 +56,9 @@
                   </div>
               <?php endif ?>
               </div>            
-              <table class="pag table table-striped w-auto table-bordered table-sm table-condensed" cellspacing="0" width="100%">
+              <table class="pag table table-hover table-hover table-striped w-auto table-bordered table-sm table-condensed" cellspacing="0" width="100%">
                 <thead>
-                  <tr class="row">
+                  <tr class="row info">
                       <th class="col-xs-1 col-sm-1 hidden-sm hidden-xs">#</th>
                       <th class="col-xs-1 col-sm-1">Utilisateur</th>
                       <th class="col-xs-4 col-sm-4">Commentaires</th>
