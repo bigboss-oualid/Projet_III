@@ -30,36 +30,36 @@
                 <!-- /.box-header -->
                 <div class="box-body table-responsive">
                   <div id="results"></div>
-                  <table class="pag table table-striped w-auto table-bordered table-sm table-condensed" cellspacing="0" width="100%">
+                  <table class="pag table-hover table table-hover table-striped w-auto table-bordered table-sm table-condensed" cellspacing="0" width="100%">
                     <thead>
-                      <tr class="row">
+                      <tr class="row info">
                           <th class="col-sm-1 col-xs-1">#</th>
-                          <th class="col-sm-1 col-xs-1 hidden-sm hidden-xs">Image</th>
-                          <th class="col-sm-1 col-xs-1">Nom</th>
+                          <th class="col-sm-1 hidden-sm hidden-xs">Image</th>
+                          <th class="col-sm-2 col-xs-3">Nom</th>
                           <th class="col-sm-2 col-xs-2">Groupe</th>
                           <th class="col-sm-1 col-xs-1">Statut</th>
-                          <th class="col-sm-1 col-xs-1 hidden-sm hidden-xs">Ajouté</th>
-                          <th class="col-sm-3 col-xs-3">Email</th>
+                          <th class="col-sm-1 hidden-sm hidden-xs">Ajouté</th>
+                          <th class="col-sm-2 col-xs-3">Email</th>
                           <th class="col-sm-2 col-xs-2">Action</th>
                       </tr>
                     <thead>
                     <tbody>
                     <?php foreach ($users as $user): ?>
+                      <?php if ($user->id != $loggedUser->id): ?>
                       <tr class="row">
                         <td class="col-sm-1 col-xs-1"><?= $user->id; ?></td>
                         <td class="col-sm-1 col-xs-1 hidden-sm hidden-xs">
                           <img src="<?= assets('uploads/images/users/' . $user->image); ?>" >
                         </td>
-                        <td class="col-sm-1 col-xs-1">
+                        <td class="col-sm-2 col-xs-3">
                           <strong><?= $user->last_name . " " . $user->first_name;?></strong>
                         </td>
                         <td class="col-sm-2 col-xs-2"><?= (isset($user->group))? $user->group: 'Blog';?></td>
                         <td class="col-sm-1 col-xs-1"><?= $user->status;?></td>
                         <td class="col-sm-1 col-xs-1 hidden-sm hidden-xs"><?= date('d/m/Y', $user->created);?></td>
-                        <td class="col-sm-3 col-xs-3"><?= $user->email;?></td>
+                        <td class="col-sm-2 col-xs-3"><?= $user->email;?></td>
                         <td class="col-sm-2 col-xs-1 ">
                           <div class="text-center">
-                            <?php if ($user->id != 1): ?>
                               <button class="btn btn-primary open-popup" type="button"  data-target="<?= urlHtml('/admin/users/edit/' . $user->id); ?>" data-modal-target="#edit-user-<?= $user->id; ?>">
                                 <span class="hidden-sm hidden-xs ">Modifer</span>
                                 <span class="fa fa-pencil-alt"></span>
@@ -69,10 +69,10 @@
                                 <span class="hidden-sm hidden-xs ">Supprimer</span>
                                 <span class="fa fa-trash-alt"></span>
                               </button>
-                            <?php endif ?>
                           </div>
                         </td>
                       </tr>
+                      <?php endif ?>
                     <?php endforeach; ?>
                     </tbody>
                     <tfooter>

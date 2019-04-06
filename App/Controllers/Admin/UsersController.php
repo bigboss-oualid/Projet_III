@@ -15,6 +15,8 @@ class UsersController extends Controller
 	{
 		$this->html->setTitle('Utilisateurs');
 
+		$data['loggedUser'] = $this->load->model('Login')->user();
+
 		$data['users'] = $this->load->model('Users')->all();
 
 		$data['success'] = $this->session->has('success') ? $this->session->pull('success') : null;
