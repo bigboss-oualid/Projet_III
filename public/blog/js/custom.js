@@ -34,6 +34,19 @@ $(function () {
         }
     });
 
+    //Report Comment
+    $('#report-form').submit( function () {
+
+        var choice = confirm($(this).attr('data-confirm'));
+
+        if (choice) {
+            return true;
+        }
+        else{
+            return false;
+        }
+    });
+
     // submit form
     $(document).on('click', '.submit-btn', function (e) {
         btn = $(this);

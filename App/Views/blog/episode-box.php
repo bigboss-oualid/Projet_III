@@ -17,14 +17,14 @@
         </h1>
         <div class="date-container">
             <span class="fa fa-calendar"></span>
-            <span class="date"><?= date('d-m-Y H:i');?></span>
+            <span class="date"><?= date('d/m/Y <b>à</b> H:i', $episode->created); ?></span>
         </div>
         <div class="clearfix"></div>
         <a href="<?= urlHtml('/episode/' . seo($episode->title) . '/' . $episode->id); ?>" class="image-box">
             <img class="img-responsive img-rounded thumbnail" src="<?= assets('uploads/images/episodes/' . $episode->image); ?>" alt="<?= $episode->title; ?>" />
         </a>
         <p class="details">
-            <?= html_entity_decode(read_more($episode->details, 20)) ;?>...
+            <?= html_entity_decode(read_more($episode->details, 20)) ;?>
         </p>
         <a href="<?= urlHtml('/episode/' . seo($episode->title) . '/' . $episode->id); ?>" class="pull-right read-more">
             Lire la suite

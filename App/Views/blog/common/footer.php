@@ -45,7 +45,7 @@
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
     <!--TinyMCE-->
     <script  type="text/javascript" src="<?= assets('plugins/tinymce_5.0.3/tinymce.min.js'); ?>"></script>
-    <script  type="text/javascript" src="<?= assets('plugins/tinymce_5.0.3/init-tinymce.js'); ?>"></script>
+    <script  type="text/javascript" src="<?= assets('plugins/tinymce_5.0.3/init-tinymce-blog.js'); ?>"></script>
     
     <!--Phone flags-->
     <script type="text/javascript">

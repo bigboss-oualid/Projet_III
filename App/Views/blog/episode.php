@@ -30,7 +30,7 @@
                     <h1 class="heading"><?= $episode->title; ?></h1>
                     <div class="date-container">
                         <span class="fa fa-calendar"></span>
-                        <span class="date"><?= date('d/m/Y à H:i', $episode->created); ?></span>
+                        <span class="date"><?= date('d/m/Y <b>à</b> H:i', $episode->created); ?></span>
                     </div>
                     <div class="clearfix"></div>
                     <a href="#" class="episode-image">
@@ -148,8 +148,8 @@
                             </div>
                         </div>
                         <div class="pull-right">
-                            <form class="form-group" action="<?= urlHtml('/episode/comment/' . $comment->id); ?>" method="post">
-                                <button type="submit" class="btn btn-xs btn-danger"  onclick="return confirm('Signaler le commentaire suivant ?\n<?= $comment->first_name; ?> : <?= $comment->comment; ?>')" >Signaler le commentaire</button>
+                            <form id="report-form" data-confirm="êtes-vous sûre de signaler le commentaire de <?= $comment->first_name; ?>" class="form-group" action="<?= urlHtml('/episode/comment/' . $comment->id); ?>" method="post">
+                                <button type="submit" class="btn btn-xs btn-danger" >Signaler le commentaire</button>
                             </form>
                         </div>
                     </div>

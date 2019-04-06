@@ -30,9 +30,9 @@
                 <!-- /.box-header -->
                 <div class="box-body table-responsive">
                   <div id="results"></div>
-                  <table class="pag table table-responsive table-striped w-auto table-bordered table-sm table-condensed" cellspacing="0" width="100%">
+                  <table class="pag table table-hover table-hover table-striped w-auto table-bordered table-sm table-condensed" cellspacing="0" width="100%">
                     <thead>
-                      <tr class="row">
+                      <tr class="row info">
                           <th class="col-xs-1 col-sm-1">#</th>
                           <th class="col-xs-1 col-sm-1 hidden-xs">Image</th>
                           <th class="col-xs-4 col-sm-2">Titre</th>

@@ -160,7 +160,7 @@ class EpisodesController extends Controller
 		$data['image'] = '';
 
 		if (! empty($episode['image'])) {
-			
+			//default path to upload episode image
 			$data['image'] = $episode['image'];
 		}
 

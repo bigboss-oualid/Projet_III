@@ -110,7 +110,6 @@ $(function () {
         });
     });
 
-
     /* Deleting */
     $('.delete').on('click', function (e) {
         e.preventDefault();
@@ -135,6 +134,9 @@ $(function () {
                         tr.fadeOut(function () {
                            tr.remove();
                         });
+                    }
+                    if (results.redirectTo) {
+                        window.location.href = results.redirectTo;
                     }
                 }
             });

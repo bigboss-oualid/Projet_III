@@ -29,10 +29,10 @@
                 <!-- /.box-header -->
                 <div class="box-body table-responsive">
                     <div id="results"></div>
-                  <table class="pag table table-striped w-auto table-bordered table-sm table-condensed" cellspacing="0" width="100%">
+                  <table class="pag table table table-hover table-hover table-striped w-auto table-bordered table-sm table-condensed" cellspacing="0" width="100%">
 
                     <thead>
-                      <tr class="row">
+                      <tr class="row info">
                           <th class="col-xs-1">#</th>
                           <th class="col-xs-5">Nom du chapitre</th>
                           <th class="col-xs-3">Statut</th>
