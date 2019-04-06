@@ -94,7 +94,7 @@ class ChaptersModel extends Model
                                 ->from('episodes e')
                                 ->join('LEFT JOIN users u ON e.user_id=u.id')
                                 ->where('e.chapter_id=? AND e.status=?', $id, 'Activé')
-                                ->orderBy('e.id', 'DESC')
+                                ->orderBy('e.id', 'ASC')
                                 ->limit($limit, $offset)
                                 ->fetchAll();
                                 
